@@ -5,4 +5,28 @@
 body {
   @apply bg-black text-slate-100;
 }
-/* flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] */
+.react-calendar {
+  @apply bg-gradient-to-b from-[#2e026d] to-[#15162c];
+  width: 350px;
+  max-width: 100%;
+  border: 1px solid #a0a096;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+} /* flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] */
+.react-calendar__tile {
+  max-width: 100%;
+  padding: 10px 6.6667px;
+  background: none;
+  text-align: center;
+  line-height: 16px;
+}
+.react-calendar__month-view__days__day--weekend {
+  color: #bd7e08;
+}
+.react-calendar__tile--active {
+  background: #006edc;
+  color: white;
+}
+.react-calendar__tile--now {
+  background: #ffff76;
+}

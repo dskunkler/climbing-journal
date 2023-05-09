@@ -1,16 +1,28 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-// import { signIn, signOut, useSession } from "next-auth/react";
+// import "react-calendar/dist/Calendar.css";
 
 import { api } from "~/utils/api";
-import {
-  SignIn,
-  SignInButton,
-  UserProfile,
-  useUser,
-  UserButton,
-} from "@clerk/nextjs";
+import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
+import Calendar from "react-calendar";
+import { useState } from "react";
+
+const CalendarWizard = () => {
+  const { user } = useUser();
+  const [date, setDate] = useState(new Date());
+  if (!user) return null;
+  return (
+    <div>
+      <Calendar
+        onChange={(event) => {
+          if (event) setDate(event as Date);
+        }}
+        value={date}
+        className={"react-calendar"}
+      />
+    </div>
+  );
+};
 
 const Home: NextPage = () => {
   const { data, isLoading } = api.posts.getAll.useQuery();
@@ -31,6 +43,7 @@ const Home: NextPage = () => {
             Climb <span className="text-[hsl(280,100%,70%)]">HARDER</span>{" "}
           </h1>
           <div className="flex flex-col items-center gap-2">
+            <CalendarWizard />
             <div>
               {data?.map((post) => (
                 <div key={post.id}>{post.content}</div>
