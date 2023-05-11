@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
 import Calendar from "react-calendar";
 import { useState } from "react";
+import { add } from "date-fns";
 
 const CalendarWizard = () => {
   const { user } = useUser();
@@ -19,6 +20,41 @@ const CalendarWizard = () => {
         }}
         value={date}
         className={"react-calendar"}
+        // showWeekNumbers={true}
+      />
+    </div>
+  );
+};
+
+const FullTrainingCalendar = () => {
+  const { user } = useUser();
+  const [date, setDate] = useState(new Date());
+  if (!user) return null;
+  return (
+    <div>
+      <Calendar
+        onChange={(event) => {
+          if (event) setDate(event as Date);
+        }}
+        value={date}
+        className={"react-calendar"}
+        showNeighboringMonth={false}
+        // showWeekNumbers={true}
+      />
+      <Calendar
+        value={add(new Date(), { weeks: 4 })}
+        className={"react-calendar"}
+        showNeighboringMonth={false}
+      />
+      <Calendar
+        value={add(new Date(), { weeks: 8 })}
+        className={"react-calendar"}
+        showNeighboringMonth={false}
+      />
+      <Calendar
+        value={add(new Date(), { weeks: 12 })}
+        className={"react-calendar"}
+        showNeighboringMonth={false}
       />
     </div>
   );
@@ -43,7 +79,7 @@ const Home: NextPage = () => {
             Climb <span className="text-[hsl(280,100%,70%)]">HARDER</span>{" "}
           </h1>
           <div className="flex flex-col items-center gap-2">
-            <CalendarWizard />
+            <FullTrainingCalendar />
             <div>
               {data?.map((post) => (
                 <div key={post.id}>{post.content}</div>
