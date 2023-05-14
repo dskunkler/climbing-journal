@@ -30,3 +30,12 @@ body {
 .react-calendar__tile--now {
   background: #ffff76;
 }
+.macro-header {
+  width: 100px;
+}
+.macro-table td {
+  @apply rounded-lg;
+}
+.macro-table th {
+  @apply rounded-lg;
+}

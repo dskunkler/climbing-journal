@@ -27,7 +27,7 @@ const MacroCycle = (props: MacroCycleProps) => {
   const [phases, setPhases] = useState<MicroCycle[]>([
     { name: "Base Fitness", duration: 28, color: "bg-violet-400" },
     { name: "Strength", duration: 21, color: "bg-violet-500" },
-    { name: "Power", duration: 15, color: "bg-violet-950" },
+    { name: "Power", duration: 15, color: "bg-fuchsia-800" },
     { name: "Power Endurance", duration: 21, color: "bg-rose-600" },
     { name: "Performance", duration: 22, color: "bg-orange-300" },
     { name: "Rest", duration: 14, color: "bg-emerald-500" },
@@ -64,7 +64,14 @@ const MacroCycle = (props: MacroCycleProps) => {
       "Friday",
       "Saturday",
     ];
-    return daysOfWeek.map((day) => <th key={day}>{day}</th>);
+    return daysOfWeek.map((day) => (
+      <th
+        className="macro-header border-separate border-spacing-1 border border-slate-500"
+        key={day}
+      >
+        {day}
+      </th>
+    ));
   };
 
   // Go through the days... for each day of the week,
@@ -75,9 +82,10 @@ const MacroCycle = (props: MacroCycleProps) => {
     // Add all the empty days before our start
     for (let i = 0; i < startDate.getDay(); i++) {
       currWeek.push(
-        <td key={`rest__${i}`} className="bg-emerald-500">
-          Rest
-        </td>
+        <td
+          key={`rest__${i}`}
+          className="border border-slate-500 bg-emerald-500 "
+        />
       );
     }
     // Go through each phase
@@ -89,7 +97,10 @@ const MacroCycle = (props: MacroCycleProps) => {
           (event) => event.day.toDateString() == currDay.toDateString()
         );
         currWeek.push(
-          <td key={currDay.toISOString()} className={phase.color}>
+          <td
+            key={currDay.toISOString()}
+            className={`${phase.color} border border-slate-500`}
+          >
             {filteredEvents.map((event, ind) => (
               <div
                 key={`event_${ind}_${event.day.toISOString()}`}
@@ -109,7 +120,9 @@ const MacroCycle = (props: MacroCycleProps) => {
     }
     return weeks.map((week, index) => (
       <tr key={index}>
-        <td className={"week-number"}>{index}</td>
+        <td className={"week-number border border-slate-500 text-center"}>
+          {index}
+        </td>
         {week}
       </tr>
     ));
@@ -123,10 +136,12 @@ const MacroCycle = (props: MacroCycleProps) => {
     tableRows.push(renderTableRow());
 
     return (
-      <table className="border-spacing-* table-auto">
+      <table className="macro-table m-4 table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 p-4">
         <thead>
           <tr>
-            <th>Week</th>
+            <th className="macro-header border-separate border-spacing-1 border border-slate-500">
+              Week
+            </th>
             {renderTableHeader()}
           </tr>
         </thead>
