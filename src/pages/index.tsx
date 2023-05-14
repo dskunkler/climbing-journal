@@ -7,11 +7,148 @@ import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
 import { add } from "date-fns";
+type MicroCycle = {
+  name: string;
+  duration: number;
+  color: string;
+};
+
+type Event = {
+  day: Date;
+  description: string;
+};
+
+type MacroCycleProps = {
+  startDate: Date;
+};
+
+const MacroCycle = (props: MacroCycleProps) => {
+  const { startDate } = props;
+  const [phases, setPhases] = useState<MicroCycle[]>([
+    { name: "Base Fitness", duration: 28, color: "bg-violet-400" },
+    { name: "Strength", duration: 21, color: "bg-violet-500" },
+    { name: "Power", duration: 15, color: "bg-violet-950" },
+    { name: "Power Endurance", duration: 21, color: "bg-rose-600" },
+    { name: "Performance", duration: 22, color: "bg-orange-300" },
+    { name: "Rest", duration: 14, color: "bg-emerald-500" },
+  ]);
+
+  const [events, setEvents] = useState<Event[]>([]);
+
+  const handlePhaseDurationChange = (index: number, newDuration: number) => {
+    if (index < 0 || index >= phases.length) {
+      throw new Error("Index out of phase range");
+    }
+    setPhases(() => {
+      const newPhases = phases;
+      const phase = newPhases[index];
+      if (!phase) {
+        throw new Error(`Phase ${index} is undefined`);
+      }
+      phase.duration = newDuration;
+      console.log("~~", newPhases);
+      return newPhases;
+    });
+  };
+  const handleAddEvent = (day: Date, description: string) => {
+    setEvents((prevEvents) => [...prevEvents, { day, description }]);
+  };
+
+  const renderTableHeader = () => {
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return daysOfWeek.map((day) => <th key={day}>{day}</th>);
+  };
+
+  // Go through the days... for each day of the week,
+  const renderTableRow = () => {
+    // let weekNum = 1;
+    const weeks = [];
+    let currWeek = [];
+    // Add all the empty days before our start
+    for (let i = 0; i < startDate.getDay(); i++) {
+      currWeek.push(
+        <td key={`rest__${i}`} className="bg-emerald-500">
+          Rest
+        </td>
+      );
+    }
+    // Go through each phase
+    const currDay = new Date(startDate);
+    for (const phase of phases) {
+      // Add the phase day to the curr week
+      for (let i = 0; i < phase.duration; i++) {
+        const filteredEvents = events.filter(
+          (event) => event.day.toDateString() == currDay.toDateString()
+        );
+        currWeek.push(
+          <td key={currDay.toISOString()} className={phase.color}>
+            {filteredEvents.map((event, ind) => (
+              <div
+                key={`event_${ind}_${event.day.toISOString()}`}
+                id={`event_${ind}_${event.day.toISOString()}`}
+              >
+                {event.description}
+              </div>
+            ))}
+          </td>
+        );
+        if (currWeek.length === 7) {
+          weeks.push(currWeek);
+          currWeek = [];
+        }
+        currDay.setDate(currDay.getDate() + 1);
+      }
+    }
+    return weeks.map((week, index) => (
+      <tr key={index}>
+        <td className={"week-number"}>{index}</td>
+        {week}
+      </tr>
+    ));
+  };
+
+  const renderTable = () => {
+    const tableRows = [];
+    const currentDate = new Date(startDate);
+    console.log("currDate", currentDate);
+
+    tableRows.push(renderTableRow());
+
+    return (
+      <table className="border-spacing-* table-auto">
+        <thead>
+          <tr>
+            <th>Week</th>
+            {renderTableHeader()}
+          </tr>
+        </thead>
+        <tbody>{tableRows}</tbody>
+      </table>
+    );
+  };
+
+  return (
+    <div>
+      {renderTable()}
+      {/* <button onClick={() => handlePhaseDurationChange(0, phases[0].duration + 1)}>Add day</button>
+      <button onClick={() => handlePhaseDurationChange(0, phases[0].duration -1)}> Remove day</button> */}
+    </div>
+  );
+};
 
 const CalendarWizard = () => {
   const { user } = useUser();
   const [date, setDate] = useState<undefined | Date>();
   useEffect(() => {
+    console.log("selected: ", date);
     console.log(date);
   }, [date]);
   console.log(Date.now());
@@ -24,89 +161,14 @@ const CalendarWizard = () => {
           if (event) setDate(event as Date);
         }}
         value={date}
-        returnValue="range"
+        calendarType="US"
         className={"react-calendar"}
-        selectRange={true}
-        // showWeekNumbers={true}
       />
-      {date && (
-        <table>
-          <tr>
-            <th>Week</th>
-            <th>Sun</th>
-            <th>Mon</th>
-            <th>Tues</th>
-            <th>Wed</th>
-            <th>Thurs</th>
-            <th>Fri</th>
-            <th>Sat</th>
-          </tr>
-        </table>
-      )}
+      {date && <MacroCycle startDate={date} />}
     </div>
   );
 };
 
-// const FullTrainingCalendar = () => {
-//   const { user } = useUser();
-//   const [date, setDate] = useState(new Date());
-//   if (!user) return null;
-//   return (
-//     <div>
-//       <Calendar
-//         onChange={(event) => {
-//           if (event) setDate(event as Date);
-//         }}
-//         value={date}
-//         className={"react-calendar"}
-//         showNeighboringMonth={false}
-//         // showWeekNumbers={true}
-//       />
-//       <Calendar
-//         value={add(new Date(), { weeks: 4 })}
-//         className={"react-calendar"}
-//         showNeighboringMonth={false}
-//       />
-//       <Calendar
-//         value={add(new Date(), { weeks: 8 })}
-//         className={"react-calendar"}
-//         showNeighboringMonth={false}
-//       />
-//       <Calendar
-//         value={add(new Date(), { weeks: 12 })}
-//         className={"react-calendar"}
-//         showNeighboringMonth={false}
-//       />
-//     </div>
-//   );
-// };
-type DayProps = {
-  day: Date;
-};
-const Day = (props: DayProps) => {
-  const { day } = props;
-  return <div className="day">{day.toString()}</div>;
-};
-
-type WeekProps = {
-  startDate: Date;
-};
-const Week = (props: WeekProps) => {
-  const { startDate } = props;
-  const days = [];
-  for (let i = 0; i < 7; i++) {
-    days.push(<Day day={add(startDate, { days: i })} />);
-  }
-};
-
-// Day is a div with className
-// Week is a list of days
-// FullTrainingCal is a list of weeks...?
-
-const TrainingTable = () => {
-  const { user } = useUser();
-  if (!user) return null;
-};
 const Home: NextPage = () => {
   const { data, isLoading } = api.posts.getAll.useQuery();
   if (isLoading) return <div>Loading...</div>;
