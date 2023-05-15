@@ -46,7 +46,6 @@ const MacroCycle = (props: MacroCycleProps) => {
         throw new Error(`Phase ${index} is undefined`);
       }
       phase.duration = newDuration;
-      console.log("~~", newPhases);
       return newPhases;
     });
   };
@@ -131,7 +130,6 @@ const MacroCycle = (props: MacroCycleProps) => {
   const renderTable = () => {
     const tableRows = [];
     const currentDate = new Date(startDate);
-    console.log("currDate", currentDate);
 
     tableRows.push(renderTableRow());
 
@@ -164,10 +162,7 @@ const CalendarWizard = () => {
   const [date, setDate] = useState<undefined | Date>();
   useEffect(() => {
     console.log("selected: ", date);
-    console.log(date);
   }, [date]);
-  console.log(Date.now());
-  console.log();
   if (!user) return null;
   return (
     <div>
@@ -221,7 +216,6 @@ export default Home;
 const AuthShowcase: React.FC = () => {
   // const { data: sessionData } = useSession();
   const user = useUser();
-  console.log("user", user.isSignedIn);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
