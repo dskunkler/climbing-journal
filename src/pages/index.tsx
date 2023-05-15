@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 // import "react-calendar/dist/Calendar.css";
 
-import { api } from "~/utils/api";
+import { RouterOutputs, api } from "~/utils/api";
 import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
@@ -179,6 +179,23 @@ const CalendarWizard = () => {
   );
 };
 
+type PostWithUsers = RouterOutputs["posts"]["getAll"][number];
+const PostView = (props: PostWithUsers) => {
+  const { post, author } = props;
+  return (
+    <>
+      <div key={post.id} className="flex justify-center gap-3">
+        <img
+          src={author.profileImageUrl}
+          alt="Author Image"
+          className="h-14 w-14 rounded-full"
+        />
+        {post.content}
+      </div>
+    </>
+  );
+};
+
 const Home: NextPage = () => {
   const { data, isLoading } = api.posts.getAll.useQuery();
   if (isLoading) return <div>Loading...</div>;
@@ -200,8 +217,8 @@ const Home: NextPage = () => {
           <div className="flex flex-col items-center gap-2">
             <CalendarWizard />
             <div>
-              {data?.map((post) => (
-                <div key={post.id}>{post.content}</div>
+              {data?.map((fullPost) => (
+                <PostView {...fullPost} key={fullPost.post.id} />
               ))}
             </div>
           </div>
