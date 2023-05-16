@@ -14,15 +14,15 @@
  *
  * These allow you to access things when processing a request, like the database, the session, etc.
  */
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { type Session } from "next-auth";
+import type * as trpc from "@trpc/server";
+import type * as trpcNext from "@trpc/server/adapters/next";
+import { getAuth } from "@clerk/nextjs/server";
+import type {
+  SignedInAuthObject,
+  SignedOutAuthObject,
+} from "@clerk/nextjs/dist/api";
 
-import { getServerAuthSession } from "~/server/auth";
 import { prisma } from "~/server/db";
-
-type CreateContextOptions = {
-  session: Session | null;
-};
 
 /**
  * This helper generates the "internals" for a tRPC context. If you need to use it, you can export
@@ -34,9 +34,14 @@ type CreateContextOptions = {
  *
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
-const createInnerTRPCContext = (opts: CreateContextOptions) => {
+interface AuthContext {
+  auth: SignedInAuthObject | SignedOutAuthObject;
+}
+
+// eslint-disable-next-line @typescript-eslint/require-await
+export const createInnerTRPCContext = async ({ auth }: AuthContext) => {
   return {
-    session: opts.session,
+    auth,
     prisma,
   };
 };
@@ -47,16 +52,14 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req, res } = opts;
 
-  // Get the session from the server using the getServerSession wrapper function
-  const session = await getServerAuthSession({ req, res });
-
-  return createInnerTRPCContext({
-    session,
-  });
+export const createTRPCContext = async (
+  opts: trpcNext.CreateNextContextOptions
+) => {
+  return await createInnerTRPCContext({ auth: getAuth(opts.req) });
 };
+
+export type Context = trpc.inferAsyncReturnType<typeof createTRPCContext>;
 
 /**
  * 2. INITIALIZATION
@@ -69,7 +72,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
 
-const t = initTRPC.context<typeof createTRPCContext>().create({
+const t = initTRPC.context<Context>().create({
   transformer: superjson,
   errorFormatter({ shape, error }) {
     return {
@@ -108,13 +111,14 @@ export const publicProcedure = t.procedure;
 
 /** Reusable middleware that enforces users are logged in before running the procedure. */
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.session || !ctx.session.user) {
+  if (!ctx.auth.userId) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
     ctx: {
       // infers the `session` as non-nullable
-      session: { ...ctx.session, user: ctx.session.user },
+      auth: ctx.auth,
+      session: { ...ctx.auth.session, user: ctx.auth.user },
     },
   });
 });
