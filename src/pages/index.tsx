@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 // import "react-calendar/dist/Calendar.css";
 
-import { api } from "~/utils/api";
+import { RouterOutputs, api } from "~/utils/api";
 import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
@@ -46,7 +46,6 @@ const MacroCycle = (props: MacroCycleProps) => {
         throw new Error(`Phase ${index} is undefined`);
       }
       phase.duration = newDuration;
-      console.log("~~", newPhases);
       return newPhases;
     });
   };
@@ -131,7 +130,6 @@ const MacroCycle = (props: MacroCycleProps) => {
   const renderTable = () => {
     const tableRows = [];
     const currentDate = new Date(startDate);
-    console.log("currDate", currentDate);
 
     tableRows.push(renderTableRow());
 
@@ -164,10 +162,7 @@ const CalendarWizard = () => {
   const [date, setDate] = useState<undefined | Date>();
   useEffect(() => {
     console.log("selected: ", date);
-    console.log(date);
   }, [date]);
-  console.log(Date.now());
-  console.log();
   if (!user) return null;
   return (
     <div>
@@ -181,6 +176,23 @@ const CalendarWizard = () => {
       />
       {date && <MacroCycle startDate={date} />}
     </div>
+  );
+};
+
+type PostWithUsers = RouterOutputs["posts"]["getAll"][number];
+const PostView = (props: PostWithUsers) => {
+  const { post, author } = props;
+  return (
+    <>
+      <div key={post.id} className="flex justify-center gap-3">
+        <img
+          src={author.profileImageUrl}
+          alt="Author Image"
+          className="h-14 w-14 rounded-full"
+        />
+        {post.content}
+      </div>
+    </>
   );
 };
 
@@ -205,8 +217,8 @@ const Home: NextPage = () => {
           <div className="flex flex-col items-center gap-2">
             <CalendarWizard />
             <div>
-              {data?.map((post) => (
-                <div key={post.id}>{post.content}</div>
+              {data?.map((fullPost) => (
+                <PostView {...fullPost} key={fullPost.post.id} />
               ))}
             </div>
           </div>
@@ -221,7 +233,6 @@ export default Home;
 const AuthShowcase: React.FC = () => {
   // const { data: sessionData } = useSession();
   const user = useUser();
-  console.log("user", user.isSignedIn);
 
   return (
     <div className="flex flex-col items-center justify-center gap-4">
