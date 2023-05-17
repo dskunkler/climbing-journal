@@ -16,5 +16,5 @@ Scaffolded with t3.gg
 
 # Contributing
 
-You will likely need to make a clerk account to get the .env secret for this to test locally. [clerk env docs] (https://clerk.com/docs/nextjs/set-environment-keys)
+You will likely need to make a clerk account to get the .env secret for this to test locally. [clerk env docs](https://clerk.com/docs/nextjs/set-environment-keys)
 Theres some pretty simple things in issues right now that you can work on. If you have any issues just let me know and feel free to ask questions. I'm typically around outside of CST business hours.
