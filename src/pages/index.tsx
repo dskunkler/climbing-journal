@@ -1,12 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-// import "react-calendar/dist/Calendar.css";
 
-import { RouterOutputs, api } from "~/utils/api";
+import { type RouterOutputs, api } from "~/utils/api";
 import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
-import { add } from "date-fns";
 type MicroCycle = {
   name: string;
   duration: number;
@@ -198,6 +196,10 @@ const PostView = (props: PostWithUsers) => {
 
 const Home: NextPage = () => {
   const { data, isLoading } = api.posts.getAll.useQuery();
+  const [showCalendar, setShowCalendar] = useState(false);
+  const showCal = () => {
+    setShowCalendar(true);
+  };
   if (isLoading) return <div>Loading...</div>;
   if (!data) return <div>Error loading...</div>;
 
@@ -215,7 +217,15 @@ const Home: NextPage = () => {
             Climb <span className="text-[hsl(280,100%,70%)]">HARDER</span>{" "}
           </h1>
           <div className="flex flex-col items-center gap-2">
-            <CalendarWizard />
+            {!showCalendar && (
+              <button
+                onClick={showCal}
+                className="rounded-full border border-purple-200 px-4 py-1 text-sm font-semibold text-purple-600 hover:border-transparent hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
+              >
+                Get Started
+              </button>
+            )}
+            {showCalendar && <CalendarWizard />}
             <div>
               {data?.map((fullPost) => (
                 <PostView {...fullPost} key={fullPost.post.id} />
