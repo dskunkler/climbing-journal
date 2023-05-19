@@ -5,6 +5,7 @@ import { type RouterOutputs, api } from "~/utils/api";
 import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
+import { LoadingSpinner } from "./components/loading-spinner";
 type MicroCycle = {
   name: string;
   duration: number;
@@ -200,7 +201,7 @@ const Home: NextPage = () => {
   const showCal = () => {
     setShowCalendar(true);
   };
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (!data) return <div>Error loading...</div>;
 
   return (
