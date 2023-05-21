@@ -1,22 +1,10 @@
-export const LoadingSpinner = ({
-  spinnerColor = "amber-600",
-  backgroundColor = "gray-200",
-  size = "56",
-  alignment = "center",
-  fullscreen = false,
-}) => {
+export const LoadingSpinner = () => {
   return (
-    <div
-      className={`text-${alignment} ${
-        fullscreen
-          ? "relative block max-w-sm items-center rounded-lg border border-gray-100 bg-white p-6 shadow-md dark:border-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700"
-          : ""
-      }`}
-    >
+    <div className="text-center">
       <div role="status">
         <svg
           aria-hidden="true"
-          className={`mr-2 h-8 w-8 animate-spin fill-${spinnerColor} dark:text-gray-600 text-${backgroundColor} h-${size} w-${size}`}
+          className="mr-2 inline h-56 w-56 animate-spin fill-amber-600 text-gray-200 dark:fill-amber-400 dark:text-gray-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
