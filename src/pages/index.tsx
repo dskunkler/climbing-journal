@@ -5,7 +5,7 @@ import { type RouterOutputs, api } from "~/utils/api";
 import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
-import { LoadingSpinner } from "./components/loading-spinner";
+import { LoadingPage } from "./components/loading-spinner";
 type MicroCycle = {
   name: string;
   duration: number;
@@ -196,12 +196,12 @@ const PostView = (props: PostWithUsers) => {
 };
 
 const Home: NextPage = () => {
+  // This is for learning purposes can remove later
   const { data, isLoading } = api.posts.getAll.useQuery();
+
   const [showCalendar, setShowCalendar] = useState(false);
-  const showCal = () => {
-    setShowCalendar(true);
-  };
-  if (isLoading) return <LoadingSpinner />;
+
+  if (isLoading) return <LoadingPage />;
   if (!data) return <div>Error loading...</div>;
 
   return (
@@ -220,7 +220,7 @@ const Home: NextPage = () => {
           <div className="flex flex-col items-center gap-2">
             {!showCalendar && (
               <button
-                onClick={showCal}
+                onClick={setShowCalendar(true)}
                 className="rounded-full border border-purple-200 px-4 py-1 text-sm font-semibold text-purple-600 hover:border-transparent hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
               >
                 Get Started
