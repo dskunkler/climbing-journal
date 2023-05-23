@@ -12,7 +12,7 @@ body {
   border: 1px solid #a0a096;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
-  margin:auto;
+  margin: auto;
 } /* flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] */
 .react-calendar__tile {
   max-width: 100%;
@@ -32,11 +32,20 @@ body {
   background: #ffff76;
 }
 .macro-header {
-  width: 100px;
+  /* width: 100px; */
 }
 .macro-table td {
   @apply rounded-lg;
+  min-width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 .macro-table th {
   @apply rounded-lg;
+
+  min-width: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }

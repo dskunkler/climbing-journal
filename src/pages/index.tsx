@@ -54,15 +54,7 @@ const MacroCycle = (props: MacroCycleProps) => {
   };
 
   const renderTableHeader = () => {
-    const daysOfWeek = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ];
+    const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
     return daysOfWeek.map((day) => (
       <th
         className="macro-header border-separate border-spacing-1 border border-slate-500"
@@ -134,17 +126,19 @@ const MacroCycle = (props: MacroCycleProps) => {
     tableRows.push(renderTableRow());
 
     return (
-      <table className="macro-table m-4 table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 p-4">
-        <thead>
-          <tr>
-            <th className="macro-header border-separate border-spacing-1 border border-slate-500">
-              Week
-            </th>
-            {renderTableHeader()}
-          </tr>
-        </thead>
-        <tbody>{tableRows}</tbody>
-      </table>
+      <div className="w-full overflow-x-auto">
+        <table className="macro-table w-full table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 ">
+          <thead>
+            <tr className="sm:text-sm">
+              <th className="macro-header border-separate border-spacing-1 border border-slate-500">
+                Week
+              </th>
+              {renderTableHeader()}
+            </tr>
+          </thead>
+          <tbody>{tableRows}</tbody>
+        </table>
+      </div>
     );
   };
 
