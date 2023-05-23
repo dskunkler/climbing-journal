@@ -17,10 +17,6 @@
 import type * as trpc from "@trpc/server";
 import type * as trpcNext from "@trpc/server/adapters/next";
 import { getAuth } from "@clerk/nextjs/server";
-import type {
-  SignedInAuthObject,
-  SignedOutAuthObject,
-} from "@clerk/nextjs/dist/api";
 
 import { prisma } from "~/server/db";
 
@@ -35,13 +31,13 @@ import { prisma } from "~/server/db";
  * @see https://create.t3.gg/en/usage/trpc#-serverapitrpcts
  */
 interface AuthContext {
-  auth: SignedInAuthObject | SignedOutAuthObject;
+  userId: string | null | undefined;
 }
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const createInnerTRPCContext = async ({ auth }: AuthContext) => {
+export const createInnerTRPCContext = async ({ userId }: AuthContext) => {
   return {
-    auth,
+    userId,
     prisma,
   };
 };
@@ -56,7 +52,8 @@ export const createInnerTRPCContext = async ({ auth }: AuthContext) => {
 export const createTRPCContext = async (
   opts: trpcNext.CreateNextContextOptions
 ) => {
-  return await createInnerTRPCContext({ auth: getAuth(opts.req) });
+  const user = getAuth(opts.req);
+  return await createInnerTRPCContext({ userId: user.userId });
 };
 
 export type Context = trpc.inferAsyncReturnType<typeof createTRPCContext>;
@@ -111,14 +108,12 @@ export const publicProcedure = t.procedure;
 
 /** Reusable middleware that enforces users are logged in before running the procedure. */
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
-  if (!ctx.auth.userId) {
+  if (!ctx.userId) {
     throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
     ctx: {
-      // infers the `session` as non-nullable
-      auth: ctx.auth,
-      session: { ...ctx.auth.session, user: ctx.auth.user },
+      userId: ctx.userId,
     },
   });
 });
