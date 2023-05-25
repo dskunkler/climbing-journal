@@ -3,9 +3,9 @@ import Head from "next/head";
 
 import { type RouterOutputs, api } from "~/utils/api";
 import { SignInButton, useUser, UserButton } from "@clerk/nextjs";
-import { CalendarWizard } from "./components/calendar-wizard";
+import { CalendarWizard } from "../components/calendar-wizard";
 import { useState } from "react";
-import { LoadingPage } from "./components/loading-spinner";
+import { LoadingPage } from "../components/loading-spinner";
 import Image from "next/image";
 
 type PostWithUsers = RouterOutputs["posts"]["getAll"][number];
