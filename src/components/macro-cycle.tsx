@@ -16,16 +16,35 @@ type MacroCycleProps = {
   startDate: Date;
 };
 
+const macroArray = [
+  { name: "Base Fitness", duration: 28, color: "bg-violet-400" },
+  { name: "Strength", duration: 21, color: "bg-violet-500" },
+  { name: "Power", duration: 15, color: "bg-fuchsia-800" },
+  { name: "Power Endurance", duration: 21, color: "bg-rose-600" },
+  { name: "Performance", duration: 22, color: "bg-orange-300" },
+  { name: "Rest", duration: 14, color: "bg-emerald-500" },
+];
+
+export const MacroKey = () => {
+  return (
+    <>
+      <div className="flex-col items-center justify-center">
+        {macroArray.map((item, index) => (
+          <div
+            key={index}
+            className={`flex ${item.color} p-.5 m-2 justify-center rounded-lg`}
+          >
+            {item.name}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
 export const MacroCycle = (props: MacroCycleProps) => {
   const { startDate } = props;
-  const [phases, setPhases] = useState<MicroCycle[]>([
-    { name: "Base Fitness", duration: 28, color: "bg-violet-400" },
-    { name: "Strength", duration: 21, color: "bg-violet-500" },
-    { name: "Power", duration: 15, color: "bg-fuchsia-800" },
-    { name: "Power Endurance", duration: 21, color: "bg-rose-600" },
-    { name: "Performance", duration: 22, color: "bg-orange-300" },
-    { name: "Rest", duration: 14, color: "bg-emerald-500" },
-  ]);
+  const [phases, setPhases] = useState<MicroCycle[]>(macroArray);
 
   const [events, setEvents] = useState<CycleEvent[]>([]);
 

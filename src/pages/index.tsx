@@ -61,6 +61,7 @@ const PostView = (props: PostWithUsers) => {
 const Home: NextPage = () => {
   // This is for learning purposes can remove later
   api.posts.getAll.useQuery();
+  const user = useUser();
 
   const [showCalendar, setShowCalendar] = useState(false);
 
@@ -78,7 +79,7 @@ const Home: NextPage = () => {
             Climb <span className="text-[hsl(280,100%,70%)]">HARDER</span>{" "}
           </h1>
           <div className="flex flex-col items-center gap-2">
-            {!showCalendar && (
+            {user.isSignedIn && !showCalendar && (
               <button
                 onClick={() => setShowCalendar(true)}
                 className="rounded-full border border-purple-200 px-4 py-1 text-sm font-semibold text-purple-600 hover:border-transparent hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2"
