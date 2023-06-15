@@ -11,6 +11,38 @@ datasource db {
   relationMode = "prisma"
 }
 
+model MacroCycle {
+    id String @id @default(cuid())
+    start DateTime
+    end DateTime
+    goal String
+    userId String @unique
+    microCycles MicroCycle[]
+}
+
+
+model MicroCycle {
+    id String @id @default(cuid())
+    start DateTime
+    end DateTime
+    name String
+    event Event[]
+    user MacroCycle @relation(fields: [userId], references: [userId])
+    userId String @unique
+    @@index([userId])
+}
+model Event {
+    id String @id @default(cuid())
+    date DateTime
+    name String
+    user MicroCycle @relation(fields: [userId], references: [userId])
+    userId String // Do we need this?
+    info Json // This will likely be different each type of event and hold its specific data.
+    
+    @@index([userId])
+}
+
+
 model Post {
     id  String @id @default(cuid())
     content String @db.VarChar(255)
