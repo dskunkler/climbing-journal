@@ -1,96 +1,93 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model MacroCycle {
-    id String @id @default(cuid())
-    start DateTime
-    goal String
-    userId String @unique
-    microCycles MicroCycle[]
+  id          String       @id @default(cuid())
+  start       DateTime
+  goal        String
+  userId      String       @unique
+  microCycles MicroCycle[]
 }
-
 
 model MicroCycle {
-    id String @id @default(cuid())
-    start DateTime
-    duration Int // Number of days
-    name String
-    events Event[]
-    user MacroCycle @relation(fields: [userId], references: [userId])
-    userId String @unique
-    @@index([userId])
-}
-model Event {
-    id String @id @default(cuid())
-    date DateTime
-    name String
-    user MicroCycle @relation(fields: [userId], references: [userId])
-    userId String // Do we need this?
-    info Json // This will likely be different each type of event and hold its specific data.
-    
-    @@index([userId])
+  id       String     @id @default(cuid())
+  start    DateTime
+  duration Int
+  name     String
+  userId   String     @unique
+  events   Event[]
+  user     MacroCycle @relation(fields: [userId], references: [userId])
+
+  @@index([userId])
 }
 
+model Event {
+  id     String     @id @default(cuid())
+  date   DateTime
+  name   String
+  userId String
+  info   Json
+  user   MicroCycle @relation(fields: [userId], references: [userId])
+
+  @@index([userId])
+}
 
 model Post {
-    id  String @id @default(cuid())
-    content String @db.VarChar(255)
-    authorId  String
-    createdAt DateTime @default(now())
-    @@index([authorId])
+  id        String   @id @default(cuid())
+  content   String   @db.VarChar(255)
+  authorId  String
+  createdAt DateTime @default(now())
+
+  @@index([authorId])
 }
 
-// Necessary for Next auth
 model Account {
-    id                String  @id @default(cuid())
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? // @db.Text
-    session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@unique([provider, providerAccountId])
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
 }
 
 model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
-    @@unique([identifier, token])
+  @@unique([identifier, token])
 }

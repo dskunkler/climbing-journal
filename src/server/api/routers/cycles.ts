@@ -18,10 +18,10 @@ const filterUserForClient = (user: User) => {
   };
 };
 
-export const postsRouter = createTRPCRouter({
+export const macroCycleRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     // Grab 10 posts
-    const posts = await ctx.prisma.post.findMany({
+    const posts = await ctx.prisma.macroCycle.findMany({
       take: 10,
       orderBy: [{ createdAt: "desc" }],
     });
@@ -56,7 +56,7 @@ export const postsRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const authorId = ctx.userId;
-      const post = await ctx.prisma.post.create({
+      const post = await ctx.prisma.macroCycle.create({
         data: {
           authorId,
           content: input.content,
