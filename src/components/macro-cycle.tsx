@@ -1,7 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import dayjs from "dayjs";
 import Day from "./day";
 
+export type MacroCycle = {
+  start: Date;
+  goal: string;
+  microCycles: MicroCycle[];
+};
+
 type MicroCycle = {
+  start: Date;
+  duration: number; // Number of days
+  name: string;
+  events: Event[];
+};
+type Event = {
+  date: Date;
+  name: string;
+
+  info: unknown; // This will likely be different each type of event and hold its specific data.
+};
+
+type MicroCycleShape = {
   name: string;
   duration: number;
   color: string;
@@ -14,6 +34,7 @@ export type CycleEvent = {
 
 type MacroCycleProps = {
   startDate: Date;
+  setMacro: (val: MacroCycle) => void;
 };
 
 const macroArray = [
@@ -43,8 +64,50 @@ export const MacroKey = () => {
 };
 
 export const MacroCycle = (props: MacroCycleProps) => {
-  const { startDate } = props;
-  const [phases, setPhases] = useState<MicroCycle[]>(macroArray);
+  const { startDate, setMacro } = props;
+  const today = new Date(startDate);
+  const [phases, setPhases] = useState<MicroCycleShape[]>(macroArray);
+  const [goal, setGoal] = useState("Get Yoked");
+  const [macroCycle, setMacroCycle] = useState<MacroCycle>({
+    start: today,
+    goal,
+    microCycles: [
+      { name: "Base Fitness", duration: 28, start: today, events: [] },
+      {
+        name: "Strength",
+        duration: 21,
+        start: dayjs().add(28, "day").toDate(),
+        events: [],
+      },
+      {
+        name: "Power",
+        duration: 15,
+        start: dayjs().add(49, "day").toDate(),
+        events: [],
+      },
+      {
+        name: "Power Endurance",
+        duration: 21,
+        start: dayjs().add(64, "day").toDate(),
+        events: [],
+      },
+      {
+        name: "Performance",
+        duration: 22,
+        start: dayjs().add(85, "day").toDate(),
+        events: [],
+      },
+      {
+        name: "Rest",
+        duration: 14,
+        start: dayjs().add(107, "day").toDate(),
+        events: [],
+      },
+    ],
+  });
+  useEffect(() => {
+    setMacro(macroCycle);
+  }, [macroCycle]);
 
   const [events, setEvents] = useState<CycleEvent[]>([]);
 
@@ -126,7 +189,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
 
   const renderTable = () => {
     const tableRows = [];
-    const currentDate = new Date(startDate);
 
     tableRows.push(renderTableWeek());
 

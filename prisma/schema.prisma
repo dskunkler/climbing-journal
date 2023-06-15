@@ -14,7 +14,6 @@ datasource db {
 model MacroCycle {
     id String @id @default(cuid())
     start DateTime
-    end DateTime
     goal String
     userId String @unique
     microCycles MicroCycle[]
@@ -24,9 +23,9 @@ model MacroCycle {
 model MicroCycle {
     id String @id @default(cuid())
     start DateTime
-    end DateTime
+    duration Int // Number of days
     name String
-    event Event[]
+    events Event[]
     user MacroCycle @relation(fields: [userId], references: [userId])
     userId String @unique
     @@index([userId])

@@ -1,11 +1,15 @@
 import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
-import MacroCycle, { MacroKey } from "./macro-cycle";
+import MacroCycleComponent, { MacroKey, type MacroCycle } from "./macro-cycle";
 
 export const CalendarWizard = () => {
   const { user } = useUser();
   const [date, setDate] = useState<undefined | Date>();
+  const [macroData, setMacroData] = useState<MacroCycle>();
+  useEffect(() => {
+    console.log("~~", macroData);
+  }, [macroData]);
   useEffect(() => {
     console.log("selected: ", date);
   }, [date]);
@@ -23,7 +27,7 @@ export const CalendarWizard = () => {
         />
         {date && <MacroKey />}
       </div>
-      {date && <MacroCycle startDate={date} />}
+      {date && <MacroCycleComponent startDate={date} setMacro={setMacroData} />}
     </div>
   );
 };
