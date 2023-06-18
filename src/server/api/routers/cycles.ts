@@ -18,23 +18,29 @@ const filterUserForClient = (user: User) => {
   };
 };
 
+// WHile this works for posts where we just want to find the last 10 posts and shoe
+// Here I Think we actually want to query by CURRENT userid. No need to show
+// anyone elses
 export const macroCycleRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
-    // Grab 10 posts
-    const posts = await ctx.prisma.macroCycle.findMany({
+    // Grab 10 cycles
+    const cycles = await ctx.prisma.macroCycle.findMany({
+      where: {
+        userId: { equals: ctx.userId != null ? ctx.userId : undefined },
+      },
       take: 10,
-      orderBy: [{ createdAt: "desc" }],
+      orderBy: [{ start: "desc" }],
     });
-    // Get 10 users where userId is the posts authorId
+    // Get 10 users where userId is the cycles authorId
     const users = (
       await clerkClient.users.getUserList({
-        userId: posts.map((post) => post.authorId),
+        userId: cycles.map((cycle) => cycle.userId),
         limit: 10,
       })
     ).map(filterUserForClient);
     // Return post and its associated author id
-    return posts.map((post) => {
-      const author = users.find((user) => user.id === post.authorId);
+    return cycles.map((cycle) => {
+      const author = users.find((user) => user.id === cycle.userId);
       if (!author) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
@@ -43,7 +49,7 @@ export const macroCycleRouter = createTRPCRouter({
       }
 
       return {
-        post,
+        cycle,
         author,
       };
     });
@@ -51,15 +57,51 @@ export const macroCycleRouter = createTRPCRouter({
   create: protectedProcedure
     .input(
       z.object({
-        content: z.string().emoji().min(1).max(280),
+        start: z.date(),
+        goal: z.string().min(1).max(280),
+        microCycles: z
+          .object({
+            start: z.date(),
+            duration: z.number(),
+            name: z.string(),
+            events: z
+              .object({
+                date: z.date(),
+                name: z.string(),
+                info: z.object({}).passthrough(),
+              })
+              .array(),
+          })
+          .array(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const authorId = ctx.userId;
+      const userId = ctx.userId;
       const post = await ctx.prisma.macroCycle.create({
         data: {
-          authorId,
-          content: input.content,
+          userId,
+          start: input.start,
+          goal: input.goal,
+          microCycles: {
+            create: input.microCycles.map((cycle) => {
+              return {
+                start: cycle.start,
+                duration: cycle.duration,
+                name: cycle.name,
+                userId,
+                events: {
+                  create: cycle.events.map((event) => {
+                    return {
+                      date: event.date,
+                      name: event.name,
+                      userId,
+                      info: event.info,
+                    };
+                  }),
+                },
+              };
+            }),
+          },
         },
       });
       return post;

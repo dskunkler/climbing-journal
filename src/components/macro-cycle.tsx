@@ -18,7 +18,7 @@ type Event = {
   date: Date;
   name: string;
 
-  info: unknown; // This will likely be different each type of event and hold its specific data.
+  info: { [k: string]: unknown }; // This will likely be different each type of event and hold its specific data.
 };
 
 type MicroCycleShape = {
