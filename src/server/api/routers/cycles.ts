@@ -58,10 +58,12 @@ export const macroCycleRouter = createTRPCRouter({
     .input(
       z.object({
         start: z.date(),
+        end: z.date(),
         goal: z.string().min(1).max(280),
         microCycles: z
           .object({
             start: z.date(),
+            end: z.date(),
             duration: z.number(),
             name: z.string(),
             events: z
@@ -81,11 +83,13 @@ export const macroCycleRouter = createTRPCRouter({
         data: {
           userId,
           start: input.start,
+          end: input.end,
           goal: input.goal,
           microCycles: {
             create: input.microCycles.map((cycle) => {
               return {
                 start: cycle.start,
+                end: cycle.end,
                 duration: cycle.duration,
                 name: cycle.name,
                 userId,

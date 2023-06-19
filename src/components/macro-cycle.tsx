@@ -4,12 +4,14 @@ import Day from "./day";
 
 export type MacroCycle = {
   start: Date;
+  end: Date;
   goal: string;
   microCycles: MicroCycle[];
 };
 
 type MicroCycle = {
   start: Date;
+  end: Date;
   duration: number; // Number of days
   name: string;
   events: Event[];
@@ -72,38 +74,62 @@ export const MacroCycle = (props: MacroCycleProps) => {
     start: today,
     goal,
     microCycles: [
-      { name: "Base Fitness", duration: 28, start: today, events: [] },
+      {
+        name: "Base Fitness",
+        duration: 28,
+        start: today,
+        end: dayjs().add(28, "day").toDate(),
+        events: [],
+      },
       {
         name: "Strength",
         duration: 21,
         start: dayjs().add(28, "day").toDate(),
+        end: dayjs()
+          .add(21 + 28, "day")
+          .toDate(),
         events: [],
       },
       {
         name: "Power",
         duration: 15,
         start: dayjs().add(49, "day").toDate(),
+        end: dayjs()
+          .add(15 + 49, "day")
+          .toDate(),
         events: [],
       },
       {
         name: "Power Endurance",
         duration: 21,
         start: dayjs().add(64, "day").toDate(),
+        end: dayjs()
+          .add(21 + 64, "day")
+          .toDate(),
         events: [],
       },
       {
         name: "Performance",
         duration: 22,
         start: dayjs().add(85, "day").toDate(),
+        end: dayjs()
+          .add(22 + 85, "day")
+          .toDate(),
         events: [],
       },
       {
         name: "Rest",
         duration: 14,
         start: dayjs().add(107, "day").toDate(),
+        end: dayjs()
+          .add(14 + 107, "day")
+          .toDate(),
         events: [],
       },
     ],
+    end: dayjs()
+      .add(14 + 107, "day")
+      .toDate(),
   });
   useEffect(() => {
     setMacro(macroCycle);

@@ -8,55 +8,55 @@ import { useState } from "react";
 import { LoadingPage } from "../components/loading-spinner";
 import Image from "next/image";
 
-type PostWithUsers = RouterOutputs["posts"]["getAll"][number];
-const PostPage = () => {
-  const { data, isLoading } = api.posts.getAll.useQuery();
-  const [input, setInput] = useState("");
-  const ctx = api.useContext();
-  const { mutate, isLoading: isPosting } = api.posts.create.useMutation({
-    onSuccess: () => {
-      setInput("");
-      void ctx.posts.invalidate();
-    },
-  });
+// type PostWithUsers = RouterOutputs["posts"]["getAll"][number];
+// const PostPage = () => {
+//   const { data, isLoading } = api.posts.getAll.useQuery();
+//   const [input, setInput] = useState("");
+//   const ctx = api.useContext();
+//   const { mutate, isLoading: isPosting } = api.posts.create.useMutation({
+//     onSuccess: () => {
+//       setInput("");
+//       void ctx.posts.invalidate();
+//     },
+//   });
 
-  if (isLoading) return <LoadingPage />;
-  if (!data) return <div>Error loading...</div>;
-  return (
-    <>
-      <input
-        placeholder="Test"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        disabled={isPosting}
-      />
-      <button onClick={() => mutate({ content: input })}>Submit</button>
+//   if (isLoading) return <LoadingPage />;
+//   if (!data) return <div>Error loading...</div>;
+//   return (
+//     <>
+//       <input
+//         placeholder="Test"
+//         value={input}
+//         onChange={(e) => setInput(e.target.value)}
+//         disabled={isPosting}
+//       />
+//       <button onClick={() => mutate({ content: input })}>Submit</button>
 
-      <div>
-        {data?.map((fullPost) => (
-          <PostView {...fullPost} key={fullPost.post.id} />
-        ))}
-      </div>
-    </>
-  );
-};
-const PostView = (props: PostWithUsers) => {
-  const { post, author } = props;
-  return (
-    <>
-      <div key={post.id} className="flex justify-center gap-3">
-        <Image
-          src={author.profileImageUrl}
-          alt={`${author.username || "Authors"} Image`}
-          className="rounded-full"
-          width={56}
-          height={56}
-        />
-        {post.content}
-      </div>
-    </>
-  );
-};
+//       <div>
+//         {data?.map((fullPost) => (
+//           <PostView {...fullPost} key={fullPost.post.id} />
+//         ))}
+//       </div>
+//     </>
+//   );
+// };
+// const PostView = (props: PostWithUsers) => {
+//   const { post, author } = props;
+//   return (
+//     <>
+//       <div key={post.id} className="flex justify-center gap-3">
+//         <Image
+//           src={author.profileImageUrl}
+//           alt={`${author.username || "Authors"} Image`}
+//           className="rounded-full"
+//           width={56}
+//           height={56}
+//         />
+//         {post.content}
+//       </div>
+//     </>
+//   );
+// };
 
 const Home: NextPage = () => {
   // This is for learning purposes can remove later
@@ -88,7 +88,7 @@ const Home: NextPage = () => {
               </button>
             )}
             {showCalendar && <CalendarWizard />}
-            <PostPage />
+            {/* <PostPage /> */}
           </div>
         </div>
       </main>
