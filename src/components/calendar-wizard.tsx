@@ -35,11 +35,13 @@ export const CalendarWizard = () => {
           className={"react-calendar"}
         />
         {date && <MacroKey />}
+      </div>
+      {date && <MacroCycleComponent startDate={date} setMacro={setMacroData} />}
+      <div className="flex justify-center">
         {date && macroData && macroData.microCycles && (
           <button onClick={() => mutate({ ...macroData })}>Submit</button>
         )}
       </div>
-      {date && <MacroCycleComponent startDate={date} setMacro={setMacroData} />}
     </div>
   );
 };
