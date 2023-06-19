@@ -21,11 +21,12 @@ model MicroCycle {
   start    DateTime
   duration Int
   name     String
-  userId   String     @unique
+  userId   String
   events   Event[]
-  user     MacroCycle @relation(fields: [userId], references: [userId])
+  user     MacroCycle @relation(fields: [macroId], references: [id])
+  macroId String
 
-  @@index([userId])
+  @@index([macroId])
 }
 
 model Event {
@@ -34,13 +35,14 @@ model Event {
   name   String
   userId String
   info   Json
-  user   MicroCycle @relation(fields: [userId], references: [userId])
+  user   MicroCycle @relation(fields: [microId], references: [id])
+  microId String
 
-  @@index([userId])
+  @@index([microId])
 }
 
 model Post {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   content   String   @db.VarChar(255)
   authorId  String
   createdAt DateTime @default(now())
