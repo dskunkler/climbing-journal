@@ -11,40 +11,40 @@ datasource db {
 model MacroCycle {
   id          String       @id @default(cuid())
   start       DateTime
-  end       DateTime
+  end         DateTime
   goal        String
-  userId      String       @unique
+  userId      String
   microCycles MicroCycle[]
 }
 
 model MicroCycle {
   id       String     @id @default(cuid())
   start    DateTime
-  end    DateTime
+  end      DateTime
   duration Int
   name     String
   userId   String
   events   Event[]
   user     MacroCycle @relation(fields: [macroId], references: [id])
-  macroId String
+  macroId  String
 
   @@index([macroId])
 }
 
 model Event {
-  id     String     @id @default(cuid())
-  date   DateTime
-  name   String
-  userId String
-  info   Json
-  user   MicroCycle @relation(fields: [microId], references: [id])
+  id      String     @id @default(cuid())
+  date    DateTime
+  name    String
+  userId  String
+  info    Json
+  user    MicroCycle @relation(fields: [microId], references: [id])
   microId String
 
   @@index([microId])
 }
 
 model Post {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   content   String   @db.VarChar(255)
   authorId  String
   createdAt DateTime @default(now())
