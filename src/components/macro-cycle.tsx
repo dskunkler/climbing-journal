@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import Day from "./day";
+import { type RouterOutputs } from "~/utils/api";
 
+export type PrismaMacroCycle = RouterOutputs["macroCycles"]["getMostRecent"];
 export type MacroCycle = {
   start: Date;
   end: Date;
@@ -36,8 +38,8 @@ export type CycleEvent = {
 
 type MacroCycleProps = {
   startDate?: Date;
-  setMacro: (val: MacroCycle) => void;
-  macroCycle?: MacroCycle;
+  setMacro?: (val: MacroCycle) => void;
+  macroCycle?: PrismaMacroCycle;
 };
 
 const macroArray = [
@@ -78,74 +80,70 @@ export const MacroCycle = (props: MacroCycleProps) => {
   const [goal, setGoal] = useState(
     macroCycleProp ? macroCycleProp.goal : "Get Yoked"
   );
-  const [macroCycle, setMacroCycle] = useState<MacroCycle>(
-    macroCycleProp
-      ? macroCycleProp
-      : {
-          start: today,
-          goal,
-          microCycles: [
-            {
-              name: "Base Fitness",
-              duration: 28,
-              start: today,
-              end: dayjs().add(28, "day").toDate(),
-              events: [],
-            },
-            {
-              name: "Strength",
-              duration: 21,
-              start: dayjs().add(28, "day").toDate(),
-              end: dayjs()
-                .add(21 + 28, "day")
-                .toDate(),
-              events: [],
-            },
-            {
-              name: "Power",
-              duration: 15,
-              start: dayjs().add(49, "day").toDate(),
-              end: dayjs()
-                .add(15 + 49, "day")
-                .toDate(),
-              events: [],
-            },
-            {
-              name: "Power Endurance",
-              duration: 21,
-              start: dayjs().add(64, "day").toDate(),
-              end: dayjs()
-                .add(21 + 64, "day")
-                .toDate(),
-              events: [],
-            },
-            {
-              name: "Performance",
-              duration: 22,
-              start: dayjs().add(85, "day").toDate(),
-              end: dayjs()
-                .add(22 + 85, "day")
-                .toDate(),
-              events: [],
-            },
-            {
-              name: "Rest",
-              duration: 14,
-              start: dayjs().add(107, "day").toDate(),
-              end: dayjs()
-                .add(14 + 107, "day")
-                .toDate(),
-              events: [],
-            },
-          ],
-          end: dayjs()
-            .add(14 + 107, "day")
-            .toDate(),
-        }
-  );
+  const [macroCycle, setMacroCycle] = useState<MacroCycle>({
+    start: today,
+    goal,
+    microCycles: [
+      {
+        name: "Base Fitness",
+        duration: 28,
+        start: today,
+        end: dayjs().add(28, "day").toDate(),
+        events: [],
+      },
+      {
+        name: "Strength",
+        duration: 21,
+        start: dayjs().add(28, "day").toDate(),
+        end: dayjs()
+          .add(21 + 28, "day")
+          .toDate(),
+        events: [],
+      },
+      {
+        name: "Power",
+        duration: 15,
+        start: dayjs().add(49, "day").toDate(),
+        end: dayjs()
+          .add(15 + 49, "day")
+          .toDate(),
+        events: [],
+      },
+      {
+        name: "Power Endurance",
+        duration: 21,
+        start: dayjs().add(64, "day").toDate(),
+        end: dayjs()
+          .add(21 + 64, "day")
+          .toDate(),
+        events: [],
+      },
+      {
+        name: "Performance",
+        duration: 22,
+        start: dayjs().add(85, "day").toDate(),
+        end: dayjs()
+          .add(22 + 85, "day")
+          .toDate(),
+        events: [],
+      },
+      {
+        name: "Rest",
+        duration: 14,
+        start: dayjs().add(107, "day").toDate(),
+        end: dayjs()
+          .add(14 + 107, "day")
+          .toDate(),
+        events: [],
+      },
+    ],
+    end: dayjs()
+      .add(14 + 107, "day")
+      .toDate(),
+  });
   useEffect(() => {
-    setMacro(macroCycle);
-  }, [macroCycle]);
+    setMacro && setMacro(macroCycle);
+  }, [macroCycle, setMacro]);
 
   const [events, setEvents] = useState<CycleEvent[]>([]);
 

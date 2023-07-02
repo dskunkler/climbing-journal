@@ -34,7 +34,11 @@ export const macroCycleRouter = createTRPCRouter({
       take: 1,
       orderBy: [{ start: "desc" }],
       include: {
-        microCycles: true,
+        microCycles: {
+          include: {
+            events: true,
+          },
+        },
       },
     });
     return cycles[0];
