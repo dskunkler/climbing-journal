@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import Day from "./day";
+import { type RouterOutputs } from "~/utils/api";
 
+export type PrismaMacroCycle = RouterOutputs["macroCycles"]["getMostRecent"];
 export type MacroCycle = {
   start: Date;
   end: Date;
@@ -35,8 +37,9 @@ export type CycleEvent = {
 };
 
 type MacroCycleProps = {
-  startDate: Date;
-  setMacro: (val: MacroCycle) => void;
+  startDate?: Date;
+  setMacro?: (val: MacroCycle) => void;
+  macroCycle?: PrismaMacroCycle;
 };
 
 const macroArray = [
@@ -66,10 +69,17 @@ export const MacroKey = () => {
 };
 
 export const MacroCycle = (props: MacroCycleProps) => {
-  const { startDate, setMacro } = props;
+  const { setMacro, macroCycle: macroCycleProp } = props;
+  const startDate = macroCycleProp ? macroCycleProp.start : props.startDate;
+  if (!startDate) {
+    throw new Error("Start dating missing in MacroCycle");
+  }
+
   const today = new Date(startDate);
   const [phases, setPhases] = useState<MicroCycleShape[]>(macroArray);
-  const [goal, setGoal] = useState("Get Yoked");
+  const [goal, setGoal] = useState(
+    macroCycleProp ? macroCycleProp.goal : "Get Yoked"
+  );
   const [macroCycle, setMacroCycle] = useState<MacroCycle>({
     start: today,
     goal,
@@ -132,8 +142,8 @@ export const MacroCycle = (props: MacroCycleProps) => {
       .toDate(),
   });
   useEffect(() => {
-    setMacro(macroCycle);
-  }, [macroCycle]);
+    setMacro && setMacro(macroCycle);
+  }, [macroCycle, setMacro]);
 
   const [events, setEvents] = useState<CycleEvent[]>([]);
 

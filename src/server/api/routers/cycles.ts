@@ -9,20 +9,11 @@ import {
 } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 
-// Filter subset of user data
-const filterUserForClient = (user: User) => {
-  return {
-    username: user.username,
-    profileImageUrl: user.profileImageUrl,
-    id: user.id,
-  };
-};
-
 // WHile this works for posts where we just want to find the last 10 posts and shoe
 // Here I Think we actually want to query by CURRENT userid. No need to show
 // anyone elses
 export const macroCycleRouter = createTRPCRouter({
-  getAll: publicProcedure.query(async ({ ctx }) => {
+  getAll: protectedProcedure.query(async ({ ctx }) => {
     // Grab 10 cycles
     const cycles = await ctx.prisma.macroCycle.findMany({
       where: {
@@ -32,27 +23,25 @@ export const macroCycleRouter = createTRPCRouter({
       orderBy: [{ start: "desc" }],
     });
     // Get 10 users where userId is the cycles authorId
-    const users = (
-      await clerkClient.users.getUserList({
-        userId: cycles.map((cycle) => cycle.userId),
-        limit: 10,
-      })
-    ).map(filterUserForClient);
-    // Return post and its associated author id
-    return cycles.map((cycle) => {
-      const author = users.find((user) => user.id === cycle.userId);
-      if (!author) {
-        throw new TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Author for post not found",
-        });
-      }
-
-      return {
-        cycle,
-        author,
-      };
+    return cycles;
+  }),
+  getMostRecent: protectedProcedure.query(async ({ ctx }) => {
+    // Get most recent
+    const cycles = await ctx.prisma.macroCycle.findMany({
+      where: {
+        userId: { equals: ctx.userId != null ? ctx.userId : undefined },
+      },
+      take: 1,
+      orderBy: [{ start: "desc" }],
+      include: {
+        microCycles: {
+          include: {
+            events: true,
+          },
+        },
+      },
     });
+    return cycles[0];
   }),
   create: protectedProcedure
     .input(
