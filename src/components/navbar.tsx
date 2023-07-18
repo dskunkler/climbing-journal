@@ -6,7 +6,10 @@ const Navbar = () => {
   const router = useRouter();
 
   const isActive = (pathname: string) => {
-    return router.pathname === pathname ? "text-gray-300" : "text-white";
+    console.log("~~pathname", router.pathname);
+    return router.pathname === pathname
+      ? "text-slate-600 text-lg"
+      : "text-white";
   };
 
   return (
@@ -16,7 +19,10 @@ const Navbar = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link className={`text-lg font-bold ${isActive("/")}`} href="/">
+                <Link
+                  className={`hover:text-gray-300 ${isActive("/")}`}
+                  href="/"
+                >
                   Home
                 </Link>
                 <Link
