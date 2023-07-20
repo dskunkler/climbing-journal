@@ -6,7 +6,6 @@ const Navbar = () => {
   const router = useRouter();
 
   const isActive = (pathname: string) => {
-    console.log("~~pathname", router.pathname);
     return router.pathname === pathname
       ? "text-slate-600 text-lg"
       : "text-white";
