@@ -22,6 +22,10 @@ export const Day = (props: DayProps) => {
       <div className="absolute bottom-0 right-1">
         {dayNum == 1 ? `${newDate.getUTCMonth() + 1}/${dayNum}` : `${dayNum}`}
       </div>
+      {/**I think we want to maybe add some sort of event name list here and then show more details in the day Modal?
+       * Book has it so theres like an abreviated name which I think is decent and then inside the day modal we can have more informations
+       * Maybe we can even make it so the Events have a modal with more info....
+       */}
       <DayModal events={events} handleClose={handleClose} open={open} />
     </div>
   );
