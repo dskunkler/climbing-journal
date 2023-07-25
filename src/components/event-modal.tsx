@@ -36,7 +36,12 @@ export const EventModal = () => {
       >
         <Box className={"bg-slate-800"} sx={{ ...style, width: 200 }}>
           <h2 id="child-modal-title">Select an event:</h2>
-          This will be a list of events
+          This will be a list of events here
+          <ul className="list-disc">
+            <li>Fingerboard</li>
+            <li>Then do a mutation</li>
+            <li>etc etc etc</li>
+          </ul>
           <Button onClick={handleClose}>Close Child Modal</Button>
         </Box>
       </Modal>

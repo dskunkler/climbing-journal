@@ -33,10 +33,12 @@ const DayModal = (props: DayModalProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box className={"bg-slate-800"} sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Events
-          </Typography>
-          <EventModal />
+          <div className="inline-flex space-x-40">
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Events
+            </Typography>
+            <EventModal />
+          </div>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <ul>
               {events.map((event, index) => (
