@@ -14,7 +14,9 @@ model MacroCycle {
   end         DateTime
   goal        String
   userId      String
+  events      Event[]
   microCycles MicroCycle[]
+  @@index([userId])
 }
 
 model MicroCycle {
@@ -24,9 +26,8 @@ model MicroCycle {
   duration Int
   name     String
   userId   String
-  events   Event[]
-  user     MacroCycle @relation(fields: [macroId], references: [id])
   macroId  String
+  user     MacroCycle @relation(fields: [macroId], references: [id])
 
   @@index([macroId])
 }
@@ -37,10 +38,10 @@ model Event {
   name    String
   userId  String
   info    Json
-  user    MicroCycle @relation(fields: [microId], references: [id])
-  microId String
+  macroId String
+  user    MacroCycle @relation(fields: [macroId], references: [id])
 
-  @@index([microId])
+  @@index([macroId])
 }
 
 model Post {

@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import Day from "./day";
 import { type RouterOutputs } from "~/utils/api";
+import { type Prisma } from "@prisma/client";
 
 export type PrismaMacroCycle = RouterOutputs["macroCycles"]["getMostRecent"];
+
 export type MacroCycle = {
+  id?: string;
   start: Date;
   end: Date;
   goal: string;
   microCycles: MicroCycle[];
+  events: Event[];
 };
 
 type MicroCycle = {
@@ -16,13 +20,11 @@ type MicroCycle = {
   end: Date;
   duration: number; // Number of days
   name: string;
-  events: Event[];
 };
 type Event = {
   date: Date;
   name: string;
-
-  info: { [k: string]: unknown }; // This will likely be different each type of event and hold its specific data.
+  info: Prisma.JsonValue; // Had to add this json type from prisma for validation to wrk in cycles
 };
 
 type MicroCycleShape = {
@@ -83,13 +85,13 @@ export const MacroCycle = (props: MacroCycleProps) => {
   const [macroCycle, setMacroCycle] = useState<MacroCycle>({
     start: today,
     goal,
+    events: [],
     microCycles: [
       {
         name: "Base Fitness",
         duration: 28,
         start: today,
         end: dayjs().add(28, "day").toDate(),
-        events: [],
       },
       {
         name: "Strength",
@@ -98,7 +100,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
         end: dayjs()
           .add(21 + 28, "day")
           .toDate(),
-        events: [],
       },
       {
         name: "Power",
@@ -107,7 +108,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
         end: dayjs()
           .add(15 + 49, "day")
           .toDate(),
-        events: [],
       },
       {
         name: "Power Endurance",
@@ -116,7 +116,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
         end: dayjs()
           .add(21 + 64, "day")
           .toDate(),
-        events: [],
       },
       {
         name: "Performance",
@@ -125,7 +124,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
         end: dayjs()
           .add(22 + 85, "day")
           .toDate(),
-        events: [],
       },
       {
         name: "Rest",
@@ -134,7 +132,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
         end: dayjs()
           .add(14 + 107, "day")
           .toDate(),
-        events: [],
       },
     ],
     end: dayjs()
