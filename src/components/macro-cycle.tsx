@@ -11,6 +11,7 @@ export type MacroCycle = {
   start: Date;
   end: Date;
   goal: string;
+  userId?: string;
   microCycles: MicroCycle[];
   events: Event[];
 };

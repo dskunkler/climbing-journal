@@ -14,34 +14,27 @@ model MacroCycle {
   end         DateTime
   goal        String
   userId      String
-  events      Event[]
   microCycles MicroCycle[]
-  @@index([userId])
+  events      Event[]
 }
 
 model MicroCycle {
-  id       String     @id @default(cuid())
-  start    DateTime
-  end      DateTime
-  duration Int
-  name     String
-  userId   String
-  macroId  String
-  user     MacroCycle @relation(fields: [macroId], references: [id])
-
-  @@index([macroId])
+  id           String     @id @default(cuid())
+  start        DateTime
+  end          DateTime
+  duration     Int
+  name         String
+  macroCycleId String
+  macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id])
 }
 
 model Event {
-  id      String     @id @default(cuid())
-  date    DateTime
-  name    String
-  userId  String
-  info    Json
-  macroId String
-  user    MacroCycle @relation(fields: [macroId], references: [id])
-
-  @@index([macroId])
+  id           String     @id @default(cuid())
+  date         DateTime
+  name         String
+  info         Json?
+  macroCycleId String
+  macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id])
 }
 
 model Post {
