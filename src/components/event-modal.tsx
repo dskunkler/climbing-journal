@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
+import { api } from "../utils/api";
 
 const style = {
   position: "absolute",
@@ -15,8 +16,12 @@ const style = {
   px: 4,
   pb: 3,
 };
+type EventModalProps = {
+  date: Date;
+};
 
-export const EventModal = () => {
+export const EventModal = (props: EventModalProps) => {
+  const { date } = props;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -24,6 +29,14 @@ export const EventModal = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const ctx = api.useContext();
+  const { mutate, isLoading: isPostingMacro } =
+    api.macroCycles.addEvent.useMutation({
+      onSuccess: () => {
+        void ctx.macroCycles.invalidate();
+      },
+    });
 
   return (
     <>
@@ -38,7 +51,11 @@ export const EventModal = () => {
           <h2 id="child-modal-title">Select an event:</h2>
           This will be a list of events here
           <ul className="list-disc">
-            <li>Fingerboard</li>
+            <li
+              onClick={() => mutate({ event: { date, name: "fingerBoard" } })}
+            >
+              Fingerboard
+            </li>
             <li>Then do a mutation</li>
             <li>etc etc etc</li>
           </ul>

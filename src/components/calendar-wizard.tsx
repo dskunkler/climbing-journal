@@ -36,9 +36,6 @@ export const CalendarWizard = () => {
 
   if (!user) return null;
   // if (isLoadingCycles) return <LoadingPage />;
-
-  // NOTE FOR TOMORROW. We need to make macroCycle component take optional cycle. If it isn't passed one we can genlerate I suppose
-
   return (
     <div>
       <div className="flex justify-center">
