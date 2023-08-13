@@ -20,10 +20,11 @@ type DayModalProps = {
   open: boolean;
   handleClose: () => void;
   events: CycleEvent[];
+  date: Date;
 };
 
 const DayModal = (props: DayModalProps) => {
-  const { open, handleClose, events } = props;
+  const { open, handleClose, events, date } = props;
   return (
     <div onClick={(e) => e.stopPropagation()}>
       <Modal
@@ -37,7 +38,7 @@ const DayModal = (props: DayModalProps) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Events
             </Typography>
-            <EventModal />
+            <EventModal date={date} />
           </div>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <ul>

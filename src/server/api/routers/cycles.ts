@@ -38,7 +38,6 @@ const getLatestCycle = async (
   ctx: Context
 ): Promise<MacroCycle | undefined> => {
   const cycles = await getCycles(ctx);
-  console.log("~~latest", cycles?.length ? cycles[0]?.id : "poop");
   return cycles[0];
 };
 
@@ -111,7 +110,7 @@ export const macroCycleRouter = createTRPCRouter({
         event: z.object({
           date: z.date(),
           name: z.string(),
-          info: z.object({}).passthrough(),
+          info: z.object({}).passthrough().optional(),
         }),
       })
     )
@@ -124,13 +123,12 @@ export const macroCycleRouter = createTRPCRouter({
         latestCycle.events &&
         Array.isArray(latestCycle.events)
       ) {
-        latestCycle.events.push(input.event);
-        const cycle = await ctx.prisma.macroCycle.update({
-          where: {
-            id: latestCycle.id,
-          },
+        const cycle = await ctx.prisma.event.create({
           data: {
-            events: JSON.stringify(input.event),
+            info: JSON.stringify(input.event.info),
+            name: input.event.name,
+            date: input.event.date,
+            macroCycleId: latestCycle.id,
           },
         });
         return cycle;
