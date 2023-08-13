@@ -23,9 +23,10 @@ type MicroCycle = {
   name: string;
 };
 type Event = {
+  // info: Prisma.JsonValue; I want this to be a json object but the typing is driving me insane https://github.com/dskunkler/climbing-journal/issues/54
+  info: string;
   date: Date;
   name: string;
-  info: Prisma.JsonValue; // Had to add this json type from prisma for validation to wrk in cycles
 };
 
 type MicroCycleShape = {

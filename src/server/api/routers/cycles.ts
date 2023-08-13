@@ -58,7 +58,8 @@ export const macroCycleRouter = createTRPCRouter({
           .object({
             date: z.date(),
             name: z.string(),
-            info: z.object({}).passthrough(),
+            // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
+            info: z.string(),
           })
           .array(),
         microCycles: z
@@ -85,7 +86,6 @@ export const macroCycleRouter = createTRPCRouter({
                 date: event.date,
                 name: event.name,
                 info: event.info,
-                userId,
               };
             }),
           },
@@ -96,7 +96,6 @@ export const macroCycleRouter = createTRPCRouter({
                 end: cycle.end,
                 duration: cycle.duration,
                 name: cycle.name,
-                userId,
               };
             }),
           },
@@ -110,17 +109,17 @@ export const macroCycleRouter = createTRPCRouter({
         event: z.object({
           date: z.date(),
           name: z.string(),
-          info: z.object({}).passthrough().optional(),
+          // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
+          info: z.string(),
         }),
       })
     )
     .mutation(async ({ ctx, input }) => {
       const latestCycle = await getLatestCycle(ctx);
-      // const newEvents = latestCycle?.events.push(input);
       if (latestCycle && latestCycle.id) {
         const cycle = await ctx.prisma.event.create({
           data: {
-            info: JSON.stringify(input.event.info),
+            info: input.event.info,
             name: input.event.name,
             date: input.event.date,
             macroCycleId: latestCycle.id,
