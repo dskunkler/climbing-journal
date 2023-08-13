@@ -33,7 +33,7 @@ model Event {
   date         DateTime
   name         String
   // info         Json? https://github.com/dskunkler/climbing-journal/issues/54
-  info         String
+  info         String?
   macroCycleId String
   macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id])
 }
