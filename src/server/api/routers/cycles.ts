@@ -59,7 +59,7 @@ export const macroCycleRouter = createTRPCRouter({
             date: z.date(),
             name: z.string(),
             // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
-            info: z.string().nullable(),
+            info: z.string().nullable().optional(),
           })
           .array(),
         microCycles: z
@@ -110,7 +110,7 @@ export const macroCycleRouter = createTRPCRouter({
           date: z.date(),
           name: z.string(),
           // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
-          info: z.string().nullable(),
+          info: z.string().nullable().optional(),
         }),
       })
     )
