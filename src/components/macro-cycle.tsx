@@ -24,7 +24,7 @@ type MicroCycle = {
 };
 type Event = {
   // info: Prisma.JsonValue; I want this to be a json object but the typing is driving me insane https://github.com/dskunkler/climbing-journal/issues/54
-  info: string;
+  info: string | null;
   date: Date;
   name: string;
 };
