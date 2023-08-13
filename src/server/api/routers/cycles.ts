@@ -117,12 +117,7 @@ export const macroCycleRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       const latestCycle = await getLatestCycle(ctx);
       // const newEvents = latestCycle?.events.push(input);
-      if (
-        latestCycle &&
-        latestCycle.id &&
-        latestCycle.events &&
-        Array.isArray(latestCycle.events)
-      ) {
+      if (latestCycle && latestCycle.id) {
         const cycle = await ctx.prisma.event.create({
           data: {
             info: JSON.stringify(input.event.info),
