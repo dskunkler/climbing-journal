@@ -65,10 +65,10 @@ export const EventModal = (props: EventModalProps) => {
       >
         <Box className={"bg-slate-800"} sx={{ ...style, width: 200 }}>
           <h2 id="child-modal-title">Select an event:</h2>
-          This will be a list of events here
           <ul className="list-disc">
             {eventsList.map((event) => (
               <li
+                className=" cursor-pointer hover:bg-violet-600"
                 key={event}
                 onClick={() => mutate({ event: { date, name: event } })}
               >
