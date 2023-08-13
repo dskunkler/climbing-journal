@@ -20,6 +20,22 @@ type EventModalProps = {
   date: Date;
 };
 
+const eventsList = [
+  "Fingerboard",
+  "Skill Work",
+  "ARCing",
+  "Campus Board",
+  "Limit Bouldering",
+  "Moderate Pitches",
+  "Supplemental Exercises",
+  "Warm-up Boulder Ladder",
+  "Linked Boulder Circuit",
+  "Redpoint",
+  "Outdoor Mileage",
+  "Cross Training",
+  "Intervals",
+];
+
 export const EventModal = (props: EventModalProps) => {
   const { date } = props;
   const [open, setOpen] = React.useState(false);
@@ -51,13 +67,14 @@ export const EventModal = (props: EventModalProps) => {
           <h2 id="child-modal-title">Select an event:</h2>
           This will be a list of events here
           <ul className="list-disc">
-            <li
-              onClick={() => mutate({ event: { date, name: "fingerBoard" } })}
-            >
-              Fingerboard
-            </li>
-            <li>Then do a mutation</li>
-            <li>etc etc etc</li>
+            {eventsList.map((event) => (
+              <li
+                key={event}
+                onClick={() => mutate({ event: { date, name: event } })}
+              >
+                {event}
+              </li>
+            ))}
           </ul>
           <Button onClick={handleClose}>Close Child Modal</Button>
         </Box>
