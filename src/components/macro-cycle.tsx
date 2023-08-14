@@ -13,7 +13,7 @@ export type MacroCycle = {
   goal: string;
   userId?: string;
   microCycles: MicroCycle[];
-  events: Event[];
+  events: CycleEvent[];
 };
 
 type MicroCycle = {
@@ -22,7 +22,7 @@ type MicroCycle = {
   duration: number; // Number of days
   name: string;
 };
-type Event = {
+export type CycleEvent = {
   // info: Prisma.JsonValue; I want this to be a json object but the typing is driving me insane https://github.com/dskunkler/climbing-journal/issues/54
   info: string | null | undefined;
   date: Date;
@@ -33,11 +33,6 @@ type MicroCycleShape = {
   name: string;
   duration: number;
   color: string;
-};
-
-export type CycleEvent = {
-  day: Date;
-  description: string;
 };
 
 type MacroCycleProps = {
@@ -144,8 +139,10 @@ export const MacroCycle = (props: MacroCycleProps) => {
     setMacro && setMacro(macroCycle);
   }, [macroCycle, setMacro]);
 
-  const [events, setEvents] = useState<CycleEvent[]>([]);
+  const events = macroCycleProp?.events ?? [];
+  console.log("~~~events", events);
 
+  // This will likely need to be a mutation
   const handlePhaseDurationChange = (index: number, newDuration: number) => {
     if (index < 0 || index >= phases.length) {
       throw new Error("Index out of phase range");
@@ -159,9 +156,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
       phase.duration = newDuration;
       return newPhases;
     });
-  };
-  const handleAddEvent = (day: Date, description: string) => {
-    setEvents((prevEvents) => [...prevEvents, { day, description }]);
   };
 
   const renderTableHeader = () => {
@@ -195,8 +189,10 @@ export const MacroCycle = (props: MacroCycleProps) => {
       // Add the phase day to the curr week
       for (let i = 0; i < phase.duration; i++) {
         const filteredEvents = events.filter(
-          (event) => event.day.toDateString() == currDay.toDateString()
+          (event) => event.date.toDateString() == currDay.toDateString()
         );
+        console.log("~~filtered for ", currDay);
+        console.log(filteredEvents);
         currWeek.push(
           <td
             key={currDay.toISOString()}

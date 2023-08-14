@@ -44,10 +44,10 @@ const DayModal = (props: DayModalProps) => {
             <ul>
               {events.map((event, index) => (
                 <li
-                  key={`event_${index}_${event.day.toISOString()}`}
-                  id={`event_${index}_${event.day.toISOString()}`}
+                  key={`event_${index}_${event.date.toISOString()}`}
+                  id={`event_${index}_${event.date.toISOString()}`}
                 >
-                  {event.description}
+                  {event.info}
                 </li>
               ))}
             </ul>
