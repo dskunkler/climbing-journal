@@ -36,9 +36,9 @@ const getCycles = async (ctx: Context): Promise<MacroCycle[]> => {
 
 const getLatestCycle = async (
   ctx: Context
-): Promise<MacroCycle | undefined> => {
+): Promise<MacroCycle | null | undefined> => {
   const cycles = await getCycles(ctx);
-  return cycles[0];
+  return cycles?.length ? cycles[0] : null;
 };
 
 export const macroCycleRouter = createTRPCRouter({
