@@ -25,7 +25,9 @@ model MicroCycle {
   duration     Int
   name         String
   macroCycleId String
-  macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id])
+  macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id], onDelete: Cascade)
+
+  @@index([macroCycleId])
 }
 
 model Event {
@@ -35,7 +37,9 @@ model Event {
   // info         Json? https://github.com/dskunkler/climbing-journal/issues/54
   info         String?
   macroCycleId String
-  macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id])
+  macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id], onDelete: Cascade)
+
+  @@index([macroCycleId])
 }
 
 model Post {

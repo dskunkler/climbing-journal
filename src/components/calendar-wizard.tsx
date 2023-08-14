@@ -38,7 +38,7 @@ export const CalendarWizard = () => {
   // if (isLoadingCycles) return <LoadingPage />;
   return (
     <div>
-      <div className="flex justify-center">
+      <div className="mb-1.5 flex justify-center">
         <Calendar
           onChange={(event) => {
             if (event) setDate(event as Date);
@@ -52,7 +52,12 @@ export const CalendarWizard = () => {
       {date && <MacroCycleComponent startDate={date} setMacro={setMacroData} />}
       <div className="flex justify-center">
         {date && macroData && macroData.microCycles && (
-          <button onClick={() => mutate({ ...macroData })}>Submit</button>
+          <button
+            className="m-1.5 rounded-full border-solid p-1.5 ring-2 ring-amber-300"
+            onClick={() => mutate({ ...macroData })}
+          >
+            Submit
+          </button>
         )}
       </div>
     </div>
