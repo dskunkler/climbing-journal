@@ -37,7 +37,7 @@ export const CalendarWizard = () => {
   if (!user) return null;
   // if (isLoadingCycles) return <LoadingPage />;
   return (
-    <div>
+    <div className="w-full">
       <div className="mb-1.5 flex justify-center">
         <Calendar
           onChange={(event) => {

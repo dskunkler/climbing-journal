@@ -1,6 +1,7 @@
 import React from "react";
 import { type CycleEvent } from "./macro-cycle";
 import DayModal from "./day-modal";
+import { EXERCISES } from "~/utils/helper";
 
 export type DayProps = { date: Date; events: CycleEvent[] };
 
@@ -16,14 +17,11 @@ export const Day = (props: DayProps) => {
 
   const dayNum = newDate.getDate();
   return (
-    <div
-      className="relative h-full w-full rounded-full p-2"
-      onClick={handleOpen}
-    >
-      <div className="absolute bottom-0 right-1">
+    <div className="flex h-full w-full rounded-full p-2" onClick={handleOpen}>
+      <div className="bottom-0 right-1 flex">
         {dayNum == 1 ? `${newDate.getUTCMonth() + 1}/${dayNum}` : `${dayNum}`}
         {events.map((event) => (
-          <div key={event.name}>{event.name}</div>
+          <div key={event.name}>{EXERCISES[event.name]}</div>
         ))}
       </div>
       {/**I think we want to maybe add some sort of event name list here and then show more details in the day Modal?
