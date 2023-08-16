@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { type CycleEvent } from "./macro-cycle";
-import EventModal from "./event-modal";
+import AddEventModal from "./event-modal";
 
 const style = {
   position: "absolute",
@@ -38,20 +38,20 @@ const DayModal = (props: DayModalProps) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Events
             </Typography>
-            <EventModal date={date} />
+            <AddEventModal date={date} />
           </div>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <div id="modal-modal-description">
             <ul>
               {events.map((event, index) => (
                 <li
                   key={`event_${index}_${event.date.toISOString()}`}
                   id={`event_${index}_${event.date.toISOString()}`}
                 >
-                  {event.info}
+                  {event.name}
                 </li>
               ))}
             </ul>
-          </Typography>
+          </div>
         </Box>
       </Modal>
     </div>
