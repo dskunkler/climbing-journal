@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { api } from "../utils/api";
+import { EXERCISES } from "~/utils/helper";
 
 const style = {
   position: "absolute",
@@ -20,21 +21,7 @@ type EventModalProps = {
   date: Date;
 };
 
-const eventsList = [
-  "Fingerboard",
-  "Skill Work",
-  "ARCing",
-  "Campus Board",
-  "Limit Bouldering",
-  "Moderate Pitches",
-  "Supplemental Exercises",
-  "Warm-up Boulder Ladder",
-  "Linked Boulder Circuit",
-  "Redpoint",
-  "Outdoor Mileage",
-  "Cross Training",
-  "Intervals",
-];
+const eventsList = Object.keys(EXERCISES);
 
 export const EventModal = (props: EventModalProps) => {
   const { date } = props;

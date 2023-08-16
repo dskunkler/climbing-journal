@@ -37,7 +37,7 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Climb <span className="text-[hsl(280,100%,70%)]">HARDER</span>{" "}
           </h1>
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex w-full flex-col items-center gap-2">
             {user.isSignedIn &&
               !showCalendar &&
               (latestMacroData ? (

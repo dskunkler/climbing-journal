@@ -13,7 +13,7 @@ export type MacroCycle = {
   goal: string;
   userId?: string;
   microCycles: MicroCycle[];
-  events: Event[];
+  events: CycleEvent[];
 };
 
 type MicroCycle = {
@@ -22,7 +22,7 @@ type MicroCycle = {
   duration: number; // Number of days
   name: string;
 };
-type Event = {
+export type CycleEvent = {
   // info: Prisma.JsonValue; I want this to be a json object but the typing is driving me insane https://github.com/dskunkler/climbing-journal/issues/54
   info: string | null | undefined;
   date: Date;
@@ -33,11 +33,6 @@ type MicroCycleShape = {
   name: string;
   duration: number;
   color: string;
-};
-
-export type CycleEvent = {
-  day: Date;
-  description: string;
 };
 
 type MacroCycleProps = {
@@ -144,8 +139,10 @@ export const MacroCycle = (props: MacroCycleProps) => {
     setMacro && setMacro(macroCycle);
   }, [macroCycle, setMacro]);
 
-  const [events, setEvents] = useState<CycleEvent[]>([]);
+  const events = macroCycleProp?.events ?? [];
+  console.log("~~~events", events);
 
+  // This will likely need to be a mutation
   const handlePhaseDurationChange = (index: number, newDuration: number) => {
     if (index < 0 || index >= phases.length) {
       throw new Error("Index out of phase range");
@@ -160,15 +157,12 @@ export const MacroCycle = (props: MacroCycleProps) => {
       return newPhases;
     });
   };
-  const handleAddEvent = (day: Date, description: string) => {
-    setEvents((prevEvents) => [...prevEvents, { day, description }]);
-  };
 
   const renderTableHeader = () => {
-    const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+    const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
     return daysOfWeek.map((day) => (
       <th
-        className="macro-header border-separate border-spacing-1 border border-slate-500"
+        className="border-separate border-spacing-1 border border-slate-500"
         key={day}
       >
         {day}
@@ -185,7 +179,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
       currWeek.push(
         <td
           key={`rest__${i}`}
-          className="border border-slate-500 bg-emerald-500 "
+          className="border border-slate-500 bg-emerald-500 align-top "
         />
       );
     }
@@ -195,12 +189,14 @@ export const MacroCycle = (props: MacroCycleProps) => {
       // Add the phase day to the curr week
       for (let i = 0; i < phase.duration; i++) {
         const filteredEvents = events.filter(
-          (event) => event.day.toDateString() == currDay.toDateString()
+          (event) => event.date.toDateString() == currDay.toDateString()
         );
+        console.log("~~filtered for ", currDay);
+        console.log(filteredEvents);
         currWeek.push(
           <td
             key={currDay.toISOString()}
-            className={`${phase.color} border border-slate-500`}
+            className={`${phase.color} border border-slate-500 align-top`}
           >
             <Day date={new Date(currDay)} events={filteredEvents} />
           </td>
@@ -214,9 +210,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
     }
     return weeks.map((week, index) => (
       <tr key={index}>
-        <td className={"week-number border border-slate-500 text-center"}>
-          {index}
-        </td>
+        <td className={"border border-slate-500 text-center"}>{index}</td>
         {week}
       </tr>
     ));
@@ -228,12 +222,12 @@ export const MacroCycle = (props: MacroCycleProps) => {
     tableRows.push(renderTableWeek());
 
     return (
-      <div className="w-full overflow-x-auto">
-        <table className="macro-table w-full table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 ">
+      <div className="w-full">
+        <table className="w-full table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 align-top ">
           <thead>
             <tr className="sm:text-sm">
-              <th className="macro-header border-separate border-spacing-1 border border-slate-500">
-                Week
+              <th className="border-separate border-spacing-1 border border-slate-500">
+                Wk
               </th>
               {renderTableHeader()}
             </tr>
@@ -245,11 +239,11 @@ export const MacroCycle = (props: MacroCycleProps) => {
   };
 
   return (
-    <div>
+    <>
       {renderTable()}
       {/* <button onClick={() => handlePhaseDurationChange(0, phases[0].duration + 1)}>Add day</button>
       <button onClick={() => handlePhaseDurationChange(0, phases[0].duration -1)}> Remove day</button> */}
-    </div>
+    </>
   );
 };
 
