@@ -21,12 +21,14 @@ export const Day = (props: DayProps) => {
       className="container flex h-full w-full flex-col justify-start rounded-full"
       onClick={handleOpen}
     >
-      <div className="flex justify-end pr-1 pt-1">
+      <div className="flex justify-end pr-1">
         {dayNum == 1 ? `${newDate.getUTCMonth() + 1}/${dayNum}` : `${dayNum}`}
       </div>
       <div className="min-h-fit shrink-0">
         {events.map((event) => (
-          <div key={event.name}>{EXERCISES[event.name]}</div>
+          <div className="pl-0.5" key={event.name}>
+            {EXERCISES[event.name]}
+          </div>
         ))}
       </div>
       {/**I think we want to maybe add some sort of event name list here and then show more details in the day Modal?

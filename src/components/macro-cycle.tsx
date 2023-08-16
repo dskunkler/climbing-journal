@@ -159,10 +159,10 @@ export const MacroCycle = (props: MacroCycleProps) => {
   };
 
   const renderTableHeader = () => {
-    const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+    const daysOfWeek = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
     return daysOfWeek.map((day) => (
       <th
-        className="macro-header border-separate border-spacing-1 border border-slate-500"
+        className="border-separate border-spacing-1 border border-slate-500"
         key={day}
       >
         {day}
@@ -179,7 +179,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
       currWeek.push(
         <td
           key={`rest__${i}`}
-          className="border border-slate-500 bg-emerald-500 "
+          className="border border-slate-500 bg-emerald-500 align-top "
         />
       );
     }
@@ -196,7 +196,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
         currWeek.push(
           <td
             key={currDay.toISOString()}
-            className={`${phase.color} flex flex-col items-start border border-slate-500`}
+            className={`${phase.color} border border-slate-500 align-top`}
           >
             <Day date={new Date(currDay)} events={filteredEvents} />
           </td>
@@ -209,10 +209,8 @@ export const MacroCycle = (props: MacroCycleProps) => {
       }
     }
     return weeks.map((week, index) => (
-      <tr className="flex flex-row justify-stretch" key={index}>
-        <td className={"week-number border border-slate-500 text-center"}>
-          {index}
-        </td>
+      <tr key={index}>
+        <td className={"border border-slate-500 text-center"}>{index}</td>
         {week}
       </tr>
     ));
@@ -224,12 +222,12 @@ export const MacroCycle = (props: MacroCycleProps) => {
     tableRows.push(renderTableWeek());
 
     return (
-      <div className="w-full overflow-x-auto">
-        <table className="macro-table w-full table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 ">
+      <div className="w-full">
+        <table className="w-full table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 align-top ">
           <thead>
             <tr className="sm:text-sm">
-              <th className="macro-header border-separate border-spacing-1 border border-slate-500">
-                Week
+              <th className="border-separate border-spacing-1 border border-slate-500">
+                Wk
               </th>
               {renderTableHeader()}
             </tr>
@@ -241,11 +239,11 @@ export const MacroCycle = (props: MacroCycleProps) => {
   };
 
   return (
-    <div>
+    <>
       {renderTable()}
       {/* <button onClick={() => handlePhaseDurationChange(0, phases[0].duration + 1)}>Add day</button>
       <button onClick={() => handlePhaseDurationChange(0, phases[0].duration -1)}> Remove day</button> */}
-    </div>
+    </>
   );
 };
 
