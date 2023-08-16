@@ -196,7 +196,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
         currWeek.push(
           <td
             key={currDay.toISOString()}
-            className={`${phase.color} border border-slate-500`}
+            className={`${phase.color} flex flex-col items-start border border-slate-500`}
           >
             <Day date={new Date(currDay)} events={filteredEvents} />
           </td>
@@ -209,7 +209,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
       }
     }
     return weeks.map((week, index) => (
-      <tr key={index}>
+      <tr className="flex flex-row justify-stretch" key={index}>
         <td className={"week-number border border-slate-500 text-center"}>
           {index}
         </td>
