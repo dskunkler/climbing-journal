@@ -34,9 +34,9 @@ const DayModal = (props: DayModalProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box className={"bg-slate-800"} sx={style}>
-          <div className="inline-flex space-x-40">
+          <div className="flex flex-row justify-between">
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Events
+              Events {date.toLocaleDateString()}
             </Typography>
             <AddEventModal date={date} />
           </div>

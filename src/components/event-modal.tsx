@@ -68,7 +68,7 @@ export const AddEventModal = (props: EventModalProps) => {
               ))}
             </ul>
           </div>
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </>
