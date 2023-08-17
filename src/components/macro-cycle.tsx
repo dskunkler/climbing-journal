@@ -140,7 +140,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
   }, [macroCycle, setMacro]);
 
   const events = macroCycleProp?.events ?? [];
-  console.log("~~~events", events);
 
   // This will likely need to be a mutation
   const handlePhaseDurationChange = (index: number, newDuration: number) => {

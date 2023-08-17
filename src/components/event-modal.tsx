@@ -23,7 +23,7 @@ type EventModalProps = {
 
 const eventsList = Object.keys(EXERCISES);
 
-export const EventModal = (props: EventModalProps) => {
+export const AddEventModal = (props: EventModalProps) => {
   const { date } = props;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -68,11 +68,11 @@ export const EventModal = (props: EventModalProps) => {
               ))}
             </ul>
           </div>
-          <Button onClick={handleClose}>Close Child Modal</Button>
+          <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
     </>
   );
 };
 
-export default EventModal;
+export default AddEventModal;

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { type CycleEvent } from "./macro-cycle";
-import EventModal from "./event-modal";
+import AddEventModal from "./event-modal";
 
 const style = {
   position: "absolute",
@@ -34,24 +34,24 @@ const DayModal = (props: DayModalProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box className={"bg-slate-800"} sx={style}>
-          <div className="inline-flex space-x-40">
+          <div className="flex flex-row justify-between">
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Events
+              Events {date.toLocaleDateString()}
             </Typography>
-            <EventModal date={date} />
+            <AddEventModal date={date} />
           </div>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <div id="modal-modal-description">
             <ul>
               {events.map((event, index) => (
                 <li
                   key={`event_${index}_${event.date.toISOString()}`}
                   id={`event_${index}_${event.date.toISOString()}`}
                 >
-                  {event.info}
+                  {event.name}
                 </li>
               ))}
             </ul>
-          </Typography>
+          </div>
         </Box>
       </Modal>
     </div>
