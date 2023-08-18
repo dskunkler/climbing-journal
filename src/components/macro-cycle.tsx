@@ -190,8 +190,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
         const filteredEvents = events.filter(
           (event) => event.date.toDateString() == currDay.toDateString()
         );
-        console.log("~~filtered for ", currDay);
-        console.log(filteredEvents);
         currWeek.push(
           <td
             key={currDay.toISOString()}
