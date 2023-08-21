@@ -26,10 +26,7 @@ type DayModalProps = {
 
 const DayModal = (props: DayModalProps) => {
   const { open, handleClose, events, date } = props;
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [currentEvent, setCurrentEvent] = React.useState<CycleEvent | null>(
-    null
-  );
+  const [activeIndex, setActiveIndex] = React.useState(-1);
   return (
     <div onClick={(e) => e.stopPropagation()}>
       <Modal
@@ -48,27 +45,28 @@ const DayModal = (props: DayModalProps) => {
           <div id="day-modal-description">
             <ul>
               {events.map((event, index) => (
-                <li
-                  key={`event_${index}_${event.date.toISOString()}`}
-                  id={`event_${index}_${event.date.toISOString()}`}
-                  className="hover:text-purple-600"
-                  onClick={() => {
-                    console.log("Open Info Modal ", event);
-                    setCurrentEvent(event);
-                    setIsOpen(true);
-                  }}
-                >
-                  {event.name}
-                </li>
+                <>
+                  <li
+                    key={`event_${index}_${event.date.toISOString()}`}
+                    id={`event_${index}_${event.date.toISOString()}`}
+                    className="hover:text-purple-600"
+                    onClick={() => {
+                      console.log("Open Info Modal ", event);
+                      setActiveIndex(index);
+                    }}
+                  >
+                    {event.name}
+                  </li>
+                  <InfoModal
+                    open={activeIndex == index}
+                    event={event}
+                    handleClose={() => {
+                      setActiveIndex(-1);
+                    }}
+                  />
+                </>
               ))}
             </ul>
-            <InfoModal
-              open={isOpen}
-              event={currentEvent}
-              handleClose={() => {
-                setIsOpen(false);
-              }}
-            />
           </div>
         </Box>
       </Modal>

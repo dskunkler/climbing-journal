@@ -11,13 +11,10 @@ type InfoModalProps = {
 
 const InfoModal = (props: InfoModalProps) => {
   const { event, handleClose, open } = props;
-  console.log("hiiiii");
-
+  const [info, setInfo] = React.useState(event?.info ?? "");
   if (!event) {
-    console.log("NO EVENT PASSED");
     return <></>;
   }
-  console.log("returning something...");
   return (
     <div onClick={(e) => e.stopPropagation()}>
       <Modal
@@ -41,7 +38,17 @@ const InfoModal = (props: InfoModalProps) => {
             </div>
           </div>
           <div id="info-modal-description">
-            <textarea />
+            <label>
+              <textarea
+                name="eventInfo"
+                defaultValue={"Event Info"}
+                value={info}
+                rows={4}
+                cols={40}
+                className="resize rounded-md text-red-500"
+                onChange={(e) => setInfo(e.target.value)}
+              />
+            </label>
           </div>
         </Box>
       </Modal>
