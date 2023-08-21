@@ -26,12 +26,12 @@ export const CalendarWizard = () => {
 
   // Looking at macro Data we're getting from passing the setter prop
   useEffect(() => {
-    console.log("~~", macroData);
+    // console.log("~~", macroData);
   }, [macroData]);
 
   // Just looking at the calendar date with this for testing
   useEffect(() => {
-    console.log("selected: ", date);
+    // console.log("selected: ", date);
   }, [date]);
 
   if (!user) return null;

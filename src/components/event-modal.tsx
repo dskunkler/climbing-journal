@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { api } from "../utils/api";
 import { EXERCISES } from "~/utils/helper";
 
-const style = {
+export const modalStyle = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -50,13 +50,13 @@ export const AddEventModal = (props: EventModalProps) => {
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box className={"bg-slate-800"} sx={{ ...style, width: 200 }}>
+        <Box className={"bg-slate-800"} sx={{ ...modalStyle, width: 200 }}>
           <h2 id="child-modal-title">Select an event:</h2>
           <div>
             <ul className="list-disc">
               {eventsList.map((event) => (
                 <li
-                  className=" cursor-pointer hover:bg-violet-600"
+                  className="cursor-pointer hover:bg-violet-600"
                   key={event}
                   onClick={() => {
                     mutate({ event: { date, name: event } });

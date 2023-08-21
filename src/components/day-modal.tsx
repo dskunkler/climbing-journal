@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { type CycleEvent } from "./macro-cycle";
 import AddEventModal from "./event-modal";
+import InfoModal from "./info-modal";
 
 const style = {
   position: "absolute",
@@ -25,34 +26,50 @@ type DayModalProps = {
 
 const DayModal = (props: DayModalProps) => {
   const { open, handleClose, events, date } = props;
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [currentEvent, setCurrentEvent] = React.useState<CycleEvent | null>(
+    null
+  );
   return (
     <div onClick={(e) => e.stopPropagation()}>
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="day-modal-title"
+        aria-describedby="day-modal-description"
       >
         <Box className={"bg-slate-800"} sx={style}>
           <div className="flex flex-row justify-between">
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <Typography id="day-modal-title" variant="h6" component="h2">
               Events {date.toLocaleDateString()}
             </Typography>
             <AddEventModal date={date} />
           </div>
-          <div id="modal-modal-description">
+          <div id="day-modal-description">
             <ul>
               {events.map((event, index) => (
                 <li
                   key={`event_${index}_${event.date.toISOString()}`}
                   id={`event_${index}_${event.date.toISOString()}`}
                   className="hover:text-purple-600"
-                  onClick={() => console.log("Open Info Modal ", event)}
+                  onClick={() => {
+                    console.log("Open Info Modal ", event);
+                    setCurrentEvent(event);
+                    setIsOpen(true);
+                  }}
                 >
                   {event.name}
                 </li>
               ))}
             </ul>
+            <InfoModal
+              open={isOpen}
+              event={currentEvent}
+              handleClose={() => {
+                console.log("ree");
+                setIsOpen(false);
+              }}
+            />
           </div>
         </Box>
       </Modal>
