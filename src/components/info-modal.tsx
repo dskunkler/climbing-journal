@@ -25,9 +25,8 @@ const InfoModal = (props: InfoModalProps) => {
         onClose={handleClose}
         aria-labelledby="info-modal-title"
         aria-describedby="info-modal-description"
-        sx={modalStyle}
       >
-        <Box className={"bg-slate-800"}>
+        <Box className={"bg-slate-800"} sx={modalStyle}>
           <div className="flex justify-between">
             <div>
               <Typography id="info-modal-title" variant="h6" component="h2">
@@ -41,7 +40,9 @@ const InfoModal = (props: InfoModalProps) => {
               X
             </div>
           </div>
-          <div id="info-modal-description"></div>
+          <div id="info-modal-description">
+            <textarea />
+          </div>
         </Box>
       </Modal>
     </div>

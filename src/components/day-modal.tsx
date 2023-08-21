@@ -66,7 +66,6 @@ const DayModal = (props: DayModalProps) => {
               open={isOpen}
               event={currentEvent}
               handleClose={() => {
-                console.log("ree");
                 setIsOpen(false);
               }}
             />
