@@ -12,6 +12,7 @@ type InfoModalProps = {
 const InfoModal = (props: InfoModalProps) => {
   const { event, handleClose, open } = props;
   const [info, setInfo] = React.useState(event?.info ?? "");
+  const mutate = () => console.log("mutate");
   if (!event) {
     return <></>;
   }
@@ -38,17 +39,19 @@ const InfoModal = (props: InfoModalProps) => {
             </div>
           </div>
           <div id="info-modal-description">
-            <label>
-              <textarea
-                name="eventInfo"
-                defaultValue={"Event Info"}
-                value={info}
-                rows={4}
-                cols={40}
-                className="resize rounded-md text-red-500"
-                onChange={(e) => setInfo(e.target.value)}
-              />
-            </label>
+            <textarea
+              name="eventInfo"
+              defaultValue={"Event Info"}
+              value={info}
+              rows={4}
+              cols={40}
+              className="resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
+              onChange={(e) => setInfo(e.target.value)}
+            />
+
+            <button type="submit" onClick={mutate}>
+              Save
+            </button>
           </div>
         </Box>
       </Modal>

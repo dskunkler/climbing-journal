@@ -51,7 +51,6 @@ const DayModal = (props: DayModalProps) => {
                     id={`event_${index}_${event.date.toISOString()}`}
                     className="hover:text-purple-600"
                     onClick={() => {
-                      console.log("Open Info Modal ", event);
                       setActiveIndex(index);
                     }}
                   >
