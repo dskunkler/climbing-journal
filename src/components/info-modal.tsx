@@ -41,7 +41,7 @@ const InfoModal = (props: InfoModalProps) => {
           <div id="info-modal-description">
             <textarea
               name="eventInfo"
-              defaultValue={"Event Info"}
+              placeholder={"Event Info"}
               value={info}
               rows={4}
               cols={40}
