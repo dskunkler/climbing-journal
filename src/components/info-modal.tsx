@@ -1,7 +1,8 @@
 import React from "react";
-import { CycleEvent } from "./macro-cycle";
+import { type CycleEvent } from "./macro-cycle";
 import { Box, Modal, Typography } from "@mui/material";
 import { modalStyle } from "./event-modal";
+import { api } from "~/utils/api";
 
 type InfoModalProps = {
   event: CycleEvent | null;
@@ -12,7 +13,14 @@ type InfoModalProps = {
 const InfoModal = (props: InfoModalProps) => {
   const { event, handleClose, open } = props;
   const [info, setInfo] = React.useState(event?.info ?? "");
-  const mutate = () => console.log("mutate");
+
+  const ctx = api.useContext();
+  const { mutate, isLoading: isEditingInfo } =
+    api.macroCycles.editEventInfo.useMutation({
+      onSuccess: () => {
+        void ctx.macroCycles.invalidate();
+      },
+    });
   if (!event) {
     return <></>;
   }
@@ -49,7 +57,10 @@ const InfoModal = (props: InfoModalProps) => {
               onChange={(e) => setInfo(e.target.value)}
             />
 
-            <button type="submit" onClick={mutate}>
+            <button
+              type="submit"
+              onClick={() => mutate({ event, newInfo: info })}
+            >
               Save
             </button>
           </div>

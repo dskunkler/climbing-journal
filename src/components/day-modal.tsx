@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -45,9 +45,8 @@ const DayModal = (props: DayModalProps) => {
           <div id="day-modal-description">
             <ul>
               {events.map((event, index) => (
-                <>
+                <Fragment key={`event_${index}_${event.date.toISOString()}`}>
                   <li
-                    key={`event_${index}_${event.date.toISOString()}`}
                     id={`event_${index}_${event.date.toISOString()}`}
                     className="hover:text-purple-600"
                     onClick={() => {
@@ -55,15 +54,15 @@ const DayModal = (props: DayModalProps) => {
                     }}
                   >
                     {event.name}
+                    <InfoModal
+                      open={activeIndex == index}
+                      event={event}
+                      handleClose={() => {
+                        setActiveIndex(-1);
+                      }}
+                    />
                   </li>
-                  <InfoModal
-                    open={activeIndex == index}
-                    event={event}
-                    handleClose={() => {
-                      setActiveIndex(-1);
-                    }}
-                  />
-                </>
+                </Fragment>
               ))}
             </ul>
           </div>
