@@ -23,6 +23,7 @@ type MicroCycle = {
   name: string;
 };
 export type CycleEvent = {
+  id: string;
   // info: Prisma.JsonValue; I want this to be a json object but the typing is driving me insane https://github.com/dskunkler/climbing-journal/issues/54
   info: string | null | undefined;
   date: Date;
@@ -190,8 +191,6 @@ export const MacroCycle = (props: MacroCycleProps) => {
         const filteredEvents = events.filter(
           (event) => event.date.toDateString() == currDay.toDateString()
         );
-        console.log("~~filtered for ", currDay);
-        console.log(filteredEvents);
         currWeek.push(
           <td
             key={currDay.toISOString()}

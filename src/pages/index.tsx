@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     api.macroCycles.getMostRecent.useQuery();
 
   useEffect(() => {
-    console.log("latest?: ", latestMacroData);
+    // console.log("latest?: ", latestMacroData);
   }, [latestMacroData]);
 
   const [showCalendar, setShowCalendar] = useState(false);

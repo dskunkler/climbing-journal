@@ -10,6 +10,7 @@ import {
 } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 import type MacroCycle from "~/components/macro-cycle";
+import { CycleEvent } from "~/components/macro-cycle";
 
 /**
  * Shared Procedures
@@ -39,6 +40,18 @@ const getLatestCycle = async (
 ): Promise<MacroCycle | null | undefined> => {
   const cycles = await getCycles(ctx);
   return cycles?.length ? cycles[0] : null;
+};
+
+const getEventById = async (
+  ctx: Context,
+  id: string
+): Promise<CycleEvent | null> => {
+  const event = await ctx.prisma.event.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return event;
 };
 
 export const macroCycleRouter = createTRPCRouter({
@@ -128,5 +141,29 @@ export const macroCycleRouter = createTRPCRouter({
         return cycle;
       }
       return null;
+    }),
+  editEventInfo: protectedProcedure
+    .input(
+      z.object({
+        event: z.object({
+          id: z.string(),
+          date: z.date(),
+          name: z.string(),
+          info: z.string().nullable().optional(),
+        }),
+        newInfo: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      // Update our event by id and give it the newInfo we want to save
+      const mutatedEvent = await ctx.prisma.event.update({
+        where: {
+          id: input.event.id,
+        },
+        data: {
+          info: input.newInfo,
+        },
+      });
+      return mutatedEvent;
     }),
 });
