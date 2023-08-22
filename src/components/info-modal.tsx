@@ -3,6 +3,7 @@ import { type CycleEvent } from "./macro-cycle";
 import { Box, Modal, Typography } from "@mui/material";
 import { modalStyle } from "./event-modal";
 import { api } from "~/utils/api";
+import LoadingSpinner from "./loading-spinner";
 
 type InfoModalProps = {
   event: CycleEvent | null;
@@ -23,6 +24,9 @@ const InfoModal = (props: InfoModalProps) => {
     });
   if (!event) {
     return <></>;
+  }
+  if (isEditingInfo) {
+    return <LoadingSpinner />;
   }
   return (
     <div onClick={(e) => e.stopPropagation()}>
@@ -59,6 +63,7 @@ const InfoModal = (props: InfoModalProps) => {
 
             <button
               type="submit"
+              className="hover:text-amber-500"
               onClick={() => mutate({ event, newInfo: info })}
             >
               Save
