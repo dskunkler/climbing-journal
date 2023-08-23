@@ -50,7 +50,9 @@ const Home: NextPage = () => {
                   Get Started
                 </button>
               ))}
-            {showCalendar && <CalendarWizard />}
+            {showCalendar && !latestMacroData && (
+              <CalendarWizard closeCal={() => setShowCalendar(false)} />
+            )}
             {/* <PostPage /> */}
           </div>
         </div>
