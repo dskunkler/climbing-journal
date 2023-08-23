@@ -23,8 +23,6 @@ const Home: NextPage = () => {
 
   const [showCalendar, setShowCalendar] = useState(false);
 
-  if (isLoadingCycles) return <LoadingPage />;
-
   return (
     <>
       <Head>
@@ -53,7 +51,6 @@ const Home: NextPage = () => {
             {showCalendar && !latestMacroData && (
               <CalendarWizard closeCal={() => setShowCalendar(false)} />
             )}
-            {/* <PostPage /> */}
           </div>
         </div>
       </main>
