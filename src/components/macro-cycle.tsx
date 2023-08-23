@@ -221,6 +221,10 @@ export const MacroCycle = (props: MacroCycleProps) => {
 
     return (
       <div className="w-full">
+        <div className="flex pb-2">
+          Goal:
+          <div className="pl-1 font-semibold text-amber-500">{goal}</div>
+        </div>
         <table className="w-full table-fixed border-separate border-spacing-1 rounded-lg border border-slate-500 align-top ">
           <thead>
             <tr className="sm:text-sm">

@@ -9,7 +9,12 @@ import dayjs from "dayjs";
 import GoalModal from "./goal-modal";
 dayjs.extend(isBetween);
 
-export const CalendarWizard = () => {
+type CalendarProps = {
+  closeCal: () => void;
+};
+
+export const CalendarWizard = (props: CalendarProps) => {
+  const { closeCal } = props;
   // auth
   const { user } = useUser();
   // calendar date
@@ -67,7 +72,10 @@ export const CalendarWizard = () => {
         {date && macroData && macroData.microCycles && (
           <button
             className="m-1.5 rounded-full border-solid p-1.5 ring-2 ring-amber-300"
-            onClick={() => mutate({ ...macroData, goal: userGoal })}
+            onClick={() => {
+              mutate({ ...macroData, goal: userGoal });
+              closeCal();
+            }}
           >
             Submit
           </button>
