@@ -6,6 +6,7 @@ import MacroCycleComponent, { MacroKey, type MacroCycle } from "./macro-cycle";
 import { LoadingPage } from "../components/loading-spinner";
 import isBetween from "dayjs/plugin/isBetween";
 import dayjs from "dayjs";
+import GoalModal from "./goal-modal";
 dayjs.extend(isBetween);
 
 export const CalendarWizard = () => {
@@ -15,6 +16,9 @@ export const CalendarWizard = () => {
   const [date, setDate] = useState<undefined | Date>();
   // MacroObject
   const [macroData, setMacroData] = useState<MacroCycle>();
+
+  const [showGoalModal, setShowGoalModal] = useState(true);
+  const [userGoal, setUserGoal] = useState("");
 
   const ctx = api.useContext();
   const { mutate, isLoading: isPostingMacro } =
@@ -39,14 +43,23 @@ export const CalendarWizard = () => {
   return (
     <div className="w-full">
       <div className="mb-1.5 flex justify-center">
-        <Calendar
-          onChange={(event) => {
-            if (event) setDate(event as Date);
-          }}
-          value={date}
-          calendarType="US"
-          className={"react-calendar"}
-        />
+        {showGoalModal ? (
+          <GoalModal
+            open={showGoalModal}
+            handleClose={() => setShowGoalModal(false)}
+            goal={userGoal}
+            setGoal={setUserGoal}
+          />
+        ) : (
+          <Calendar
+            onChange={(event) => {
+              if (event) setDate(event as Date);
+            }}
+            value={date}
+            calendarType="US"
+            className={"react-calendar"}
+          />
+        )}
         {date && <MacroKey />}
       </div>
       {date && <MacroCycleComponent startDate={date} setMacro={setMacroData} />}
@@ -54,7 +67,7 @@ export const CalendarWizard = () => {
         {date && macroData && macroData.microCycles && (
           <button
             className="m-1.5 rounded-full border-solid p-1.5 ring-2 ring-amber-300"
-            onClick={() => mutate({ ...macroData })}
+            onClick={() => mutate({ ...macroData, goal: userGoal })}
           >
             Submit
           </button>
