@@ -52,7 +52,6 @@ const GoalModal = (props: GoalModalProps) => {
               type="submit"
               className="hover:text-amber-500"
               onClick={() => {
-                console.log("click BOOM");
                 setGoal(currentGoal);
                 handleClose();
               }}
