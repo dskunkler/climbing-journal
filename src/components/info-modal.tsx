@@ -64,7 +64,13 @@ const InfoModal = (props: InfoModalProps) => {
             <button
               type="submit"
               className="hover:text-amber-500"
-              onClick={() => mutate({ event, newInfo: info })}
+              onClick={() => {
+                if (!event.id) {
+                  throw new Error("Missing Event id in mutation");
+                } else {
+                  mutate({ event, newInfo: info });
+                }
+              }}
             >
               Save
             </button>

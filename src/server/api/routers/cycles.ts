@@ -146,7 +146,7 @@ export const macroCycleRouter = createTRPCRouter({
     .input(
       z.object({
         event: z.object({
-          id: z.string(),
+          id: z.string().optional(),
           date: z.date(),
           name: z.string(),
           info: z.string().nullable().optional(),
@@ -156,6 +156,9 @@ export const macroCycleRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       // Update our event by id and give it the newInfo we want to save
+      if (!input.event.id) {
+        return null;
+      }
       const mutatedEvent = await ctx.prisma.event.update({
         where: {
           id: input.event.id,
