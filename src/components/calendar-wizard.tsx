@@ -2,11 +2,16 @@ import Calendar from "react-calendar";
 import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 import { type RouterOutputs, api } from "~/utils/api";
-import MacroCycleComponent, { MacroKey, type MacroCycle } from "./macro-cycle";
+import MacroCycleComponent, {
+  MacroKey,
+  type MacroCycle,
+  CycleEvent,
+} from "./macro-cycle";
 import { LoadingPage } from "../components/loading-spinner";
 import isBetween from "dayjs/plugin/isBetween";
 import dayjs from "dayjs";
 import GoalModal from "./goal-modal";
+import { SCHEDULES } from "~/utils/schedules";
 dayjs.extend(isBetween);
 
 type CalendarProps = {
@@ -21,6 +26,19 @@ export const CalendarWizard = (props: CalendarProps) => {
   const [date, setDate] = useState<undefined | Date>();
   // MacroObject
   const [macroData, setMacroData] = useState<MacroCycle>();
+
+  let noviceEvents: CycleEvent[] = [];
+  if (date) {
+    noviceEvents = SCHEDULES.sport.novice.map((event) => {
+      const newDate = new Date(date);
+      newDate.setDate(date.getDate() + event.date);
+      return {
+        date: newDate,
+        name: event.name,
+        info: event.info,
+      };
+    });
+  }
 
   const [showGoalModal, setShowGoalModal] = useState(true);
   const [userGoal, setUserGoal] = useState("");
@@ -45,6 +63,7 @@ export const CalendarWizard = (props: CalendarProps) => {
 
   if (!user) return null;
   // if (isLoadingCycles) return <LoadingPage />;
+
   return (
     <div className="w-full">
       <div className="mb-1.5 flex justify-center">
@@ -67,13 +86,19 @@ export const CalendarWizard = (props: CalendarProps) => {
         )}
         {date && <MacroKey />}
       </div>
-      {date && <MacroCycleComponent startDate={date} setMacro={setMacroData} />}
+      {date && (
+        <MacroCycleComponent
+          startDate={date}
+          setMacro={setMacroData}
+          events={noviceEvents}
+        />
+      )}
       <div className="flex justify-center">
         {date && macroData && macroData.microCycles && (
           <button
             className="m-1.5 rounded-full border-solid p-1.5 ring-2 ring-amber-300"
             onClick={() => {
-              mutate({ ...macroData, goal: userGoal });
+              mutate({ ...macroData, goal: userGoal, events: noviceEvents });
               closeCal();
             }}
           >

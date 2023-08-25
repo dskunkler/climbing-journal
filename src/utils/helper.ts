@@ -13,4 +13,7 @@ export const EXERCISES: Excercises = {
   "Linked Bouldering Circuit": "LBC",
   "On Sight Attempt": "OS",
   "Optional Aerobic Excercise": "OAE",
+  "Skill Acquisition": "SK",
+  "Skin Care": "SC",
+  Intervals: "INT",
 };

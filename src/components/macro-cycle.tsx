@@ -23,7 +23,7 @@ type MicroCycle = {
   name: string;
 };
 export type CycleEvent = {
-  id: string;
+  id?: string;
   // info: Prisma.JsonValue; I want this to be a json object but the typing is driving me insane https://github.com/dskunkler/climbing-journal/issues/54
   info: string | null | undefined;
   date: Date;
@@ -40,6 +40,7 @@ type MacroCycleProps = {
   startDate?: Date;
   setMacro?: (val: MacroCycle) => void;
   macroCycle?: PrismaMacroCycle;
+  events?: CycleEvent[];
 };
 
 const macroArray = [
@@ -140,7 +141,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
     setMacro && setMacro(macroCycle);
   }, [macroCycle, setMacro]);
 
-  const events = macroCycleProp?.events ?? [];
+  const events = macroCycleProp?.events ?? (props.events || []);
 
   // This will likely need to be a mutation
   const handlePhaseDurationChange = (index: number, newDuration: number) => {
