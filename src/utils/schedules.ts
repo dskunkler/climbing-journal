@@ -309,7 +309,11 @@ export const SCHEDULES = {
         name: "Warm-up Boulder Ladder",
         info: '{"time":40,"climbs":[]}',
       },
-      { date: 81, name: "Intervals", info: "DC = 4:4" },
+      {
+        date: 81,
+        name: "Intervals",
+        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 4:4"}',
+      },
       {
         date: 84,
         name: "Redpoint",
@@ -335,7 +339,11 @@ export const SCHEDULES = {
         name: "Warm-up Boulder Ladder",
         info: '{"time":40,"climbs":[]}',
       },
-      { date: 88, name: "Intervals", info: "DC = 4:4" },
+      {
+        date: 88,
+        name: "Intervals",
+        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 4:4"}',
+      },
       {
         date: 91,
         name: "Redpoint",
