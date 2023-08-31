@@ -2,14 +2,12 @@ import React from "react";
 import { api } from "~/utils/api";
 import { CalendarWizard } from "../components/calendar-wizard";
 import { useEffect, useState } from "react";
-import { LoadingPage } from "../components/loading-spinner";
 import MacroCycleComponent from "../components/macro-cycle";
 
 const MacroView = () => {
   api.posts.getAll.useQuery();
 
-  const { data: latestMacroData, isLoading: isLoadingCycles } =
-    api.macroCycles.getMostRecent.useQuery();
+  const { data: latestMacroData } = api.macroCycles.getMostRecent.useQuery();
 
   useEffect(() => {
     // console.log("latest?: ", latestMacroData);
