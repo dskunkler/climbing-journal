@@ -41,6 +41,7 @@ type MacroCycleProps = {
   setMacro?: (val: MacroCycle) => void;
   macroCycle?: PrismaMacroCycle;
   events?: CycleEvent[];
+  userGoal?: string;
 };
 
 const macroArray = [
@@ -70,7 +71,7 @@ export const MacroKey = () => {
 };
 
 export const MacroCycle = (props: MacroCycleProps) => {
-  const { setMacro, macroCycle: macroCycleProp } = props;
+  const { setMacro, macroCycle: macroCycleProp, userGoal = "" } = props;
   const startDate = macroCycleProp ? macroCycleProp.start : props.startDate;
   if (!startDate) {
     throw new Error("Start dating missing in MacroCycle");
@@ -79,7 +80,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
   const today = new Date(startDate);
   const [phases, setPhases] = useState<MicroCycleShape[]>(macroArray);
   const [goal, setGoal] = useState(
-    macroCycleProp ? macroCycleProp.goal : "Get Yoked"
+    macroCycleProp ? macroCycleProp.goal : userGoal
   );
   const [macroCycle, setMacroCycle] = useState<MacroCycle>({
     start: today,

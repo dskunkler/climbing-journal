@@ -95,6 +95,7 @@ export const CalendarWizard = (props: CalendarProps) => {
           startDate={date}
           setMacro={setMacroData}
           events={noviceEvents}
+          userGoal={userGoal}
         />
       )}
       <div className="flex justify-center">
