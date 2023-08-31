@@ -257,13 +257,21 @@ export const SCHEDULES = {
         name: "Warm-up Boulder Ladder",
         info: '{"time":60,"climbs":[]}',
       },
-      { date: 64, name: "Linked Bouldering Circuit", info: "DC=2:4" },
+      {
+        date: 64,
+        name: "Linked Bouldering Circuit",
+        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:4"}',
+      },
       {
         date: 67,
         name: "Warm-up Boulder Ladder",
         info: '{"time":50,"climbs":[]}',
       },
-      { date: 67, name: "Linked Bouldering Circuit", info: "DC=2:3" },
+      {
+        date: 67,
+        name: "Linked Bouldering Circuit",
+        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:3"}',
+      },
       {
         date: 70,
         name: "Redpoint",
@@ -279,7 +287,11 @@ export const SCHEDULES = {
         name: "Warm-up Boulder Ladder",
         info: '{"time":50,"climbs":[]}',
       },
-      { date: 74, name: "Linked Bouldering Circuit", info: "DC=2:2" },
+      {
+        date: 74,
+        name: "Linked Bouldering Circuit",
+        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:2"}',
+      },
       { date: 77, name: "Redpoint", info: '{"climbs":[],"goal":""}' },
       {
         date: 77,
