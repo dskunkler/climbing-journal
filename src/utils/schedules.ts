@@ -114,43 +114,71 @@ export const SCHEDULES = {
         name: "Hangboard",
         info: '{"exercise":[{"grip":"jug","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"IMR 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium edge (semi-closed)","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MR 2-pad 2F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Large open-hand edge","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Wide pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Sloper","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MRP 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 }]}',
       },
-      { date: 28, name: "Supplementary Exercises" },
+      {
+        date: 28,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 31,
         name: "Hangboard",
         info: '{"exercise":[{"grip":"jug","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"IMR 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium edge (semi-closed)","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MR 2-pad 2F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Large open-hand edge","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Wide pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Sloper","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MRP 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 }]}',
       },
-      { date: 31, name: "Supplementary Exercises" },
+      {
+        date: 31,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 34,
         name: "Hangboard",
         info: '{"exercise":[{"grip":"jug","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"IMR 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium edge (semi-closed)","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MR 2-pad 2F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Large open-hand edge","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Wide pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Sloper","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MRP 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 }]}',
       },
-      { date: 34, name: "Supplementary Exercises" },
+      {
+        date: 34,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 37,
         name: "Hangboard",
         info: '{"exercise":[{"grip":"jug","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"IMR 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium edge (semi-closed)","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MR 2-pad 2F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Large open-hand edge","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Wide pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Sloper","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MRP 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 }]}',
       },
-      { date: 37, name: "Supplementary Exercises" },
+      {
+        date: 37,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 40,
         name: "Hangboard",
         info: '{"exercise":[{"grip":"jug","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"IMR 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium edge (semi-closed)","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MR 2-pad 2F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Large open-hand edge","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Wide pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Sloper","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MRP 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 }]}',
       },
-      { date: 40, name: "Supplementary Exercises" },
+      {
+        date: 40,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 43,
         name: "Hangboard",
         info: '{"exercise":[{"grip":"jug","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"IMR 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium edge (semi-closed)","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MR 2-pad 2F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Large open-hand edge","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Wide pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Sloper","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MRP 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 }]}',
       },
-      { date: 43, name: "Supplementary Exercises" },
+      {
+        date: 43,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 46,
         name: "Hangboard",
         info: '{"exercise":[{"grip":"jug","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"IMR 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium edge (semi-closed)","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Medium pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MR 2-pad 2F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Large open-hand edge","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Wide pinch","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"Sloper","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 },{"grip":"MRP 2-pad 3F pocket","set":1,"tut":60,"reps":6,"resistance":0,"exerciseRest":180, "repRest": 5 }]}',
       },
-      { date: 46, name: "Supplementary Exercises" },
+      {
+        date: 46,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 49,
         name: "Warm-up Boulder Ladder",
@@ -161,14 +189,22 @@ export const SCHEDULES = {
         name: "Campus",
         info: '{"time":15,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
-      { date: 49, name: "Supplementary Exercises" },
+      {
+        date: 49,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 52,
         name: "Limit Bouldering",
         info: '{"duration":90,"moves":[]}',
         notes: "",
       },
-      { date: 52, name: "Supplementary Exercises" },
+      {
+        date: 52,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 54,
         name: "Warm-up Boulder Ladder",
@@ -179,7 +215,11 @@ export const SCHEDULES = {
         name: "Campus",
         info: '{"time":20,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
-      { date: 54, name: "Supplementary Exercises" },
+      {
+        date: 54,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 57,
         name: "Limit Bouldering",
@@ -196,14 +236,22 @@ export const SCHEDULES = {
         name: "Campus",
         info: '{"time":25,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
-      { date: 59, name: "Supplementary Exercises" },
+      {
+        date: 59,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 62,
         name: "Limit Bouldering",
         info: '{"duration":90,"moves":[]}',
         notes: "",
       },
-      { date: 62, name: "Supplementary Exercises" },
+      {
+        date: 62,
+        name: "Supplementary Exercises",
+        info: '{"exercises":[], "note":""}',
+      },
       {
         date: 64,
         name: "Warm-up Boulder Ladder",
