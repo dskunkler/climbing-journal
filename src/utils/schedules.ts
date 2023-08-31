@@ -162,7 +162,12 @@ export const SCHEDULES = {
         info: '{"time":15,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
       { date: 49, name: "Supplementary Exercises" },
-      { date: 52, name: "Limit Bouldering", info: "90 minutes" },
+      {
+        date: 52,
+        name: "Limit Bouldering",
+        info: '{"duration":90,"moves":[]}',
+        notes: "",
+      },
       { date: 52, name: "Supplementary Exercises" },
       {
         date: 54,
@@ -175,7 +180,12 @@ export const SCHEDULES = {
         info: '{"time":20,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
       { date: 54, name: "Supplementary Exercises" },
-      { date: 57, name: "Limit Bouldering", info: "Outdoor" },
+      {
+        date: 57,
+        name: "Limit Bouldering",
+        info: '{"duration":90,"moves":[]}',
+        notes: "Outdoor",
+      },
       {
         date: 59,
         name: "Warm-up Boulder Ladder",
@@ -187,7 +197,12 @@ export const SCHEDULES = {
         info: '{"time":25,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
       { date: 59, name: "Supplementary Exercises" },
-      { date: 62, name: "Limit Bouldering", info: "90 minutes" },
+      {
+        date: 62,
+        name: "Limit Bouldering",
+        info: '{"duration":90,"moves":[]}',
+        notes: "",
+      },
       { date: 62, name: "Supplementary Exercises" },
       {
         date: 64,
