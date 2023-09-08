@@ -38,17 +38,14 @@ const getLatestCycle = async (
   return cycles?.length ? cycles[0] : null;
 };
 
-const getEventById = async (
-  ctx: Context,
-  id: string
-): Promise<CycleEvent | null> => {
-  const event = await ctx.prisma.event.findUnique({
-    where: {
-      id: id,
-    },
-  });
-  return event;
-};
+// const getEventById = async (ctx: Context, id: string): Promise<CycleEvent> => {
+//   const event = await ctx.prisma.event.findUnique({
+//     where: {
+//       id: id,
+//     },
+//   });
+//   return event;
+// };
 
 export const macroCycleRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
@@ -68,7 +65,7 @@ export const macroCycleRouter = createTRPCRouter({
             date: z.date(),
             name: z.string(),
             // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
-            info: z.string().nullable().optional(),
+            info: z.string(),
           })
           .array(),
         microCycles: z
@@ -119,7 +116,7 @@ export const macroCycleRouter = createTRPCRouter({
           date: z.date(),
           name: z.string(),
           // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
-          info: z.string().nullable().optional(),
+          info: z.string(),
         }),
       })
     )
