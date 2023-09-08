@@ -3,11 +3,7 @@ import { type User } from "@clerk/nextjs/dist/api";
 import { z } from "zod";
 import { type Context } from "../trpc";
 
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "~/server/api/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 import type MacroCycle from "~/components/macro-cycle";
 import { CycleEvent } from "~/components/macro-cycle";
@@ -42,17 +38,14 @@ const getLatestCycle = async (
   return cycles?.length ? cycles[0] : null;
 };
 
-const getEventById = async (
-  ctx: Context,
-  id: string
-): Promise<CycleEvent | null> => {
-  const event = await ctx.prisma.event.findUnique({
-    where: {
-      id: id,
-    },
-  });
-  return event;
-};
+// const getEventById = async (ctx: Context, id: string): Promise<CycleEvent> => {
+//   const event = await ctx.prisma.event.findUnique({
+//     where: {
+//       id: id,
+//     },
+//   });
+//   return event;
+// };
 
 export const macroCycleRouter = createTRPCRouter({
   getAll: protectedProcedure.query(async ({ ctx }) => {
@@ -72,7 +65,7 @@ export const macroCycleRouter = createTRPCRouter({
             date: z.date(),
             name: z.string(),
             // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
-            info: z.string().nullable().optional(),
+            info: z.string(),
           })
           .array(),
         microCycles: z
@@ -123,7 +116,7 @@ export const macroCycleRouter = createTRPCRouter({
           date: z.date(),
           name: z.string(),
           // info: z.object({}).passthrough().optional(),https://github.com/dskunkler/climbing-journal/issues/54
-          info: z.string().nullable().optional(),
+          info: z.string(),
         }),
       })
     )
