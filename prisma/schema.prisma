@@ -34,8 +34,7 @@ model Event {
   id           String     @id @default(cuid())
   date         DateTime
   name         String
-  // info         Json? https://github.com/dskunkler/climbing-journal/issues/54
-  info         String?
+  info         String     @db.Text
   macroCycleId String
   macroCycle   MacroCycle @relation(fields: [macroCycleId], references: [id], onDelete: Cascade)
 

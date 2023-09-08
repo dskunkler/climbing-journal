@@ -104,7 +104,11 @@ export const CalendarWizard = (props: CalendarProps) => {
             className="m-1.5 rounded-full border-solid p-1.5 ring-2 ring-amber-300"
             onClick={() => {
               setIsLoading(true);
-              mutate({ ...macroData, goal: userGoal, events: noviceEvents });
+              mutate({
+                ...macroData,
+                goal: userGoal,
+                events: noviceEvents,
+              });
             }}
           >
             Submit
