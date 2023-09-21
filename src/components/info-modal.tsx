@@ -4,21 +4,29 @@ import { Box, Modal, Typography } from "@mui/material";
 import { modalStyle } from "./event-modal";
 import { api } from "~/utils/api";
 import LoadingSpinner from "./loading-spinner";
+import OutdoorMileageComponent from "./outdoor-mileage";
 
 type InfoModalProps = {
-  event: CycleEvent | null;
+  event: CycleEvent;
   open: boolean;
   handleClose: () => void;
 };
 
 const InfoModal = (props: InfoModalProps) => {
   const { event, handleClose, open } = props;
-  const [info, setInfo] = React.useState(event?.info ?? "");
+  const [info, setInfo] = React.useState(event.info);
+  // console.log(event.info, "from info modal");
+
+  // console.log("~~~", event.name);
+  // React.useEffect(() => {
+  //   console.log("~~INFO UPDATED", info);
+  // }, [info]);
 
   const ctx = api.useContext();
   const { mutate, isLoading: isEditingInfo } =
     api.macroCycles.editEventInfo.useMutation({
       onSuccess: () => {
+        console.log("success~!~!");
         void ctx.macroCycles.invalidate();
       },
     });
@@ -51,7 +59,11 @@ const InfoModal = (props: InfoModalProps) => {
             </div>
           </div>
           <div id="info-modal-description">
-            <textarea
+            {/*  Switch on the things here */}
+            {event.name == "Outdoor Mileage" && (
+              <OutdoorMileageComponent info={event.info} setInfo={setInfo} />
+            )}
+            {/* <textarea
               name="eventInfo"
               placeholder={"Event Info"}
               value={info}
@@ -59,7 +71,7 @@ const InfoModal = (props: InfoModalProps) => {
               cols={40}
               className="resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
               onChange={(e) => setInfo(e.target.value)}
-            />
+            /> */}
 
             <button
               type="submit"
@@ -69,6 +81,7 @@ const InfoModal = (props: InfoModalProps) => {
                   throw new Error("Missing Event id in mutation");
                 } else {
                   mutate({ event, newInfo: info });
+                  handleClose();
                 }
               }}
             >
