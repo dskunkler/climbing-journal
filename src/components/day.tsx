@@ -17,7 +17,7 @@ export const Day = (props: DayProps) => {
   const dayNum = newDate.getDate();
   return (
     <div
-      className="container flex h-full w-full flex-col justify-start rounded-full"
+      className="h-full cursor-pointer"
       onClick={handleOpen}
     >
       <div className="flex justify-end pr-1">
