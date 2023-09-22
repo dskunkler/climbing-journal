@@ -5,6 +5,8 @@ import { modalStyle } from "./event-modal";
 import { api } from "~/utils/api";
 import LoadingSpinner from "./loading-spinner";
 import OutdoorMileageComponent from "./outdoor-mileage";
+import { CONSTANTS } from "~/utils/helper";
+import SkillAcquisition from "./skill-acquisition";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -60,8 +62,11 @@ const InfoModal = (props: InfoModalProps) => {
           </div>
           <div id="info-modal-description">
             {/*  Switch on the things here */}
-            {event.name == "Outdoor Mileage" && (
+            {event.name == CONSTANTS.OM && (
               <OutdoorMileageComponent info={event.info} setInfo={setInfo} />
+            )}
+            {event.name == CONSTANTS.SK && (
+              <SkillAcquisition info={event.info} setInfo={setInfo} />
             )}
             {/* <textarea
               name="eventInfo"
