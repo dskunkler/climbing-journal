@@ -43,12 +43,12 @@ const DayModal = (props: DayModalProps) => {
             <AddEventModal date={date} />
           </div>
           <div id="day-modal-description">
-            <ul>
+            <ul className="mt-2">
               {events.map((event, index) => (
                 <Fragment key={`event_${index}_${event.date.toISOString()}`}>
                   <li
                     id={`event_${index}_${event.date.toISOString()}`}
-                    className="hover:text-purple-600"
+                    className="float-left clear-left py-1 hover:text-purple-600 cursor-pointer"
                     onClick={() => {
                       setActiveIndex(index);
                     }}
