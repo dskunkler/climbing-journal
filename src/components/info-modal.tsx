@@ -19,9 +19,11 @@ const InfoModal = (props: InfoModalProps) => {
   const [info, setInfo] = React.useState(event.info);
   // console.log(event.info, "from info modal");
 
-  // console.log("~~~", event.name);
+  // // console.log("~~~", event.name);
   // React.useEffect(() => {
   //   console.log("~~INFO UPDATED", info);
+
+  //   mutate({ event, newInfo: info });
   // }, [info]);
 
   const ctx = api.useContext();
@@ -39,7 +41,7 @@ const InfoModal = (props: InfoModalProps) => {
     return <LoadingSpinner />;
   }
   return (
-    <div onClick={(e) => e.stopPropagation()}>
+    <div onClick={(e) => e.stopPropagation()} className="overflow-auto">
       <Modal
         open={open}
         onClose={handleClose}
@@ -85,6 +87,7 @@ const InfoModal = (props: InfoModalProps) => {
                 if (!event.id) {
                   throw new Error("Missing Event id in mutation");
                 } else {
+                  console.log("mutating with", info);
                   mutate({ event, newInfo: info });
                   handleClose();
                 }
