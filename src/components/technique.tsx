@@ -24,9 +24,9 @@ const Technique = (props: TechniqueProps) => {
   const [timeState, setTimeState] = useState(time);
   const [noteState, setNoteState] = useState(note);
 
-  useEffect(() => {
-    console.log("info changed....");
-  }, [nameState, timeState, noteState]);
+  // useEffect(() => {
+  //   console.log("info changed....");
+  // }, [nameState, timeState, noteState]);
 
   return (
     <div>
@@ -38,7 +38,14 @@ const Technique = (props: TechniqueProps) => {
           rows={1}
           cols={nameState.length + 4}
           className="m-3 resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
-          onChange={(e) => setNameState(e.target.value)}
+          onChange={(e) => {
+            setNameState(e.target.value);
+            setTech({
+              name: e.target.value,
+              time: timeState,
+              note: noteState,
+            });
+          }}
         />
         <DeleteOutlinedIcon onClick={() => deleteTechnique()} />
       </span>
@@ -51,7 +58,14 @@ const Technique = (props: TechniqueProps) => {
           min={1}
           max={120}
           className="m-3 resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
-          onChange={(e) => setTimeState(+e.target.value)}
+          onChange={(e) => {
+            setTimeState(+e.target.value);
+            setTech({
+              name: nameState,
+              time: +e.target.value,
+              note: noteState,
+            });
+          }}
         />
       </div>
       <div className="flex items-center">
@@ -62,7 +76,14 @@ const Technique = (props: TechniqueProps) => {
           rows={1}
           cols={noteState.length}
           className="m-3 resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
-          onChange={(e) => setNoteState(e.target.value)}
+          onChange={(e) => {
+            setNoteState(e.target.value);
+            setTech({
+              name: nameState,
+              time: timeState,
+              note: e.target.value,
+            });
+          }}
         />
       </div>
     </div>

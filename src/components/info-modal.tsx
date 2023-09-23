@@ -17,13 +17,9 @@ type InfoModalProps = {
 const InfoModal = (props: InfoModalProps) => {
   const { event, handleClose, open } = props;
   const [info, setInfo] = React.useState(event.info);
-  // console.log(event.info, "from info modal");
 
-  // // console.log("~~~", event.name);
   // React.useEffect(() => {
   //   console.log("~~INFO UPDATED", info);
-
-  //   mutate({ event, newInfo: info });
   // }, [info]);
 
   const ctx = api.useContext();
@@ -68,7 +64,11 @@ const InfoModal = (props: InfoModalProps) => {
               <OutdoorMileageComponent info={event.info} setInfo={setInfo} />
             )}
             {event.name == CONSTANTS.SK && (
-              <SkillAcquisition info={event.info} setInfo={setInfo} />
+              <SkillAcquisition
+                info={event.info}
+                setInfo={setInfo}
+                key="skill-acquisition"
+              />
             )}
             {/* <textarea
               name="eventInfo"

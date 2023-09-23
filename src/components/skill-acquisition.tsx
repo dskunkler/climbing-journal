@@ -16,7 +16,6 @@ const SkillAcquisition = (prop: {
   setInfo: Dispatch<SetStateAction<string>>;
 }) => {
   const { info, setInfo } = prop;
-  console.log("~~info", info);
   const infoJson = JSON.parse(info) as SkillAcquisition;
   const [techniques, setTechniques] = useState(infoJson.techniques);
 
@@ -25,25 +24,22 @@ const SkillAcquisition = (prop: {
       <ul>
         {techniques.map((technique, index) => (
           <li
-            key={`technique-${technique.name}-${index}`}
+            key={`technique-${index}`}
             className="m-5 border-separate border-spacing-1 border border-amber-600 p-5"
           >
             <Technique
               {...technique}
+              key={`technique-component-${index}`}
               index={index}
               setTech={(tech: Tech) => {
-                console.log("~~newTech", tech);
                 const newTechniques = techniques.map((technique, i) => {
                   if (i === index) {
-                    console.log("index = i");
                     return tech;
                   }
                   return technique;
                 });
-                console.log("newTechniques", newTechniques);
                 setTechniques(newTechniques);
                 const newInfo = JSON.stringify({ techniques: newTechniques });
-                console.log("~", newInfo);
                 setInfo(newInfo);
               }}
               deleteTechnique={() => {
