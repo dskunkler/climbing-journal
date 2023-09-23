@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { api } from "../utils/api";
 import { EXERCISES } from "~/utils/helper";
+import Typography from "@mui/material/Typography";
 
 export const modalStyle = {
   position: "absolute",
@@ -14,11 +15,10 @@ export const modalStyle = {
   maxHeight: "90%",
   border: "2px solid #000",
   boxShadow: 24,
-  pt: 2,
+  pt: 4,
   px: 4,
-  pb: 3,
   overflow: "auto",
-  overflowX: "hidden",
+  pb: 4,
 };
 type EventModalProps = {
   date: Date;
@@ -53,26 +53,39 @@ export const AddEventModal = (props: EventModalProps) => {
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box className={"bg-slate-800"} sx={{ ...modalStyle, width: 200 }}>
-          <h2 id="child-modal-title">Select an event:</h2>
-          <div>
-            <ul className="list-disc">
-              {eventsList.map((event) => (
-                <li
-                  className="cursor-pointer hover:bg-violet-600"
-                  key={`${event}${date.toISOString()}`}
-                  onClick={() => {
-                    mutate({ event: { date, name: event, info: "" } });
-                    handleClose();
-                  }}
-                >
-                  {event}
-                </li>
-              ))}
-            </ul>
+        <div
+          className={
+            "absolute left-1/2 top-1/2 max-h-screen w-96 -translate-x-1/2 -translate-y-1/2 overflow-auto border-2 border-black bg-slate-800 pb-4"
+          }
+        >
+          <div className="flex justify-between px-8 pb-6 pt-6">
+            <div>
+              <Typography id="info-modal-title" variant="h6" component="h2">
+                Select an event...
+              </Typography>
+            </div>
+            <div
+              className="cursor-pointer hover:text-red-500"
+              onClick={() => handleClose()}
+            >
+              X
+            </div>
           </div>
-          <Button onClick={handleClose}>Close</Button>
-        </Box>
+          <ul className="mb-2 list-none lg:w-96">
+            {eventsList.map((event) => (
+              <li
+                className="cursor-pointer px-8 py-2 hover:bg-violet-600"
+                key={`${event}${date.toISOString()}`}
+                onClick={() => {
+                  mutate({ event: { date, name: event, info: "" } });
+                  handleClose();
+                }}
+              >
+                {event}
+              </li>
+            ))}
+          </ul>
+        </div>
       </Modal>
     </>
   );

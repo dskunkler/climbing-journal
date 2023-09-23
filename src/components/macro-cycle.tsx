@@ -182,6 +182,7 @@ export const MacroCycle = (props: MacroCycleProps) => {
         <td
           key={`rest__${i}`}
           className="border border-slate-500 bg-emerald-500 align-top "
+          style={{ height: "inherit" }}
         />
       );
     }
@@ -196,9 +197,10 @@ export const MacroCycle = (props: MacroCycleProps) => {
         currWeek.push(
           <td
             key={currDay.toISOString()}
-            className={`${phase.color} border border-slate-500 align-top`}
+            className={`${phase.color} relative border border-slate-500 align-top`}
+            style={{ height: "inherit" }}
           >
-            <Day date={new Date(currDay)} events={filteredEvents} />
+              <Day date={new Date(currDay)} events={filteredEvents} />
           </td>
         );
         if (currWeek.length === 7) {
@@ -209,8 +211,8 @@ export const MacroCycle = (props: MacroCycleProps) => {
       }
     }
     return weeks.map((week, index) => (
-      <tr key={index}>
-        <td className={"border border-slate-500 text-center"}>{index}</td>
+      <tr key={index} className="h-px">
+        <td className={"border border-slate-500 text-center"} style={{ height: "inherit" }}>{index}</td>
         {week}
       </tr>
     ));
