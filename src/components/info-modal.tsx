@@ -5,6 +5,8 @@ import { modalStyle } from "./event-modal";
 import { api } from "~/utils/api";
 import LoadingSpinner from "./loading-spinner";
 import OutdoorMileageComponent from "./outdoor-mileage";
+import { CONSTANTS } from "~/utils/helper";
+import SkillAcquisition from "./skill-acquisition";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -15,9 +17,7 @@ type InfoModalProps = {
 const InfoModal = (props: InfoModalProps) => {
   const { event, handleClose, open } = props;
   const [info, setInfo] = React.useState(event.info);
-  // console.log(event.info, "from info modal");
 
-  // console.log("~~~", event.name);
   // React.useEffect(() => {
   //   console.log("~~INFO UPDATED", info);
   // }, [info]);
@@ -37,7 +37,7 @@ const InfoModal = (props: InfoModalProps) => {
     return <LoadingSpinner />;
   }
   return (
-    <div onClick={(e) => e.stopPropagation()}>
+    <div onClick={(e) => e.stopPropagation()} className="overflow-auto">
       <Modal
         open={open}
         onClose={handleClose}
@@ -60,8 +60,15 @@ const InfoModal = (props: InfoModalProps) => {
           </div>
           <div id="info-modal-description">
             {/*  Switch on the things here */}
-            {event.name == "Outdoor Mileage" && (
+            {event.name == CONSTANTS.OM && (
               <OutdoorMileageComponent info={event.info} setInfo={setInfo} />
+            )}
+            {event.name == CONSTANTS.SK && (
+              <SkillAcquisition
+                info={event.info}
+                setInfo={setInfo}
+                key="skill-acquisition"
+              />
             )}
             {/* <textarea
               name="eventInfo"
@@ -80,6 +87,7 @@ const InfoModal = (props: InfoModalProps) => {
                 if (!event.id) {
                   throw new Error("Missing Event id in mutation");
                 } else {
+                  console.log("mutating with", info);
                   mutate({ event, newInfo: info });
                   handleClose();
                 }

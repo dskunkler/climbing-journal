@@ -12,10 +12,12 @@ export const modalStyle = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 400,
+  maxHeight: "90%",
   border: "2px solid #000",
   boxShadow: 24,
   pt: 4,
   px: 4,
+  overflow: "auto",
   pb: 4,
 };
 type EventModalProps = {
@@ -51,8 +53,12 @@ export const AddEventModal = (props: EventModalProps) => {
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <div className={"bg-slate-800 border-2 border-black max-h-screen w-96 pb-4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-auto"}>
-          <div className="flex justify-between px-8 pt-6 pb-6">
+        <div
+          className={
+            "absolute left-1/2 top-1/2 max-h-screen w-96 -translate-x-1/2 -translate-y-1/2 overflow-auto border-2 border-black bg-slate-800 pb-4"
+          }
+        >
+          <div className="flex justify-between px-8 pb-6 pt-6">
             <div>
               <Typography id="info-modal-title" variant="h6" component="h2">
                 Select an event...
@@ -65,10 +71,10 @@ export const AddEventModal = (props: EventModalProps) => {
               X
             </div>
           </div>
-          <ul className="list-none lg:w-96 mb-2">
+          <ul className="mb-2 list-none lg:w-96">
             {eventsList.map((event) => (
               <li
-                className="cursor-pointer hover:bg-violet-600 py-2 px-8"
+                className="cursor-pointer px-8 py-2 hover:bg-violet-600"
                 key={`${event}${date.toISOString()}`}
                 onClick={() => {
                   mutate({ event: { date, name: event, info: "" } });
