@@ -77,7 +77,7 @@ export const AddEventModal = (props: EventModalProps) => {
                 className="cursor-pointer px-8 py-2 hover:bg-violet-600"
                 key={`${event}${date.toISOString()}`}
                 onClick={() => {
-                  mutate({ event: { date, name: event, info: "" } });
+                  mutate({ event: { date, name: event, info: "{}" } });
                   handleClose();
                 }}
               >

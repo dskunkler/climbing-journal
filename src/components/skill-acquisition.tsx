@@ -1,23 +1,18 @@
-import React, {
-  type Dispatch,
-  type SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { type Dispatch, type SetStateAction, useState } from "react";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Technique, { type Technique as Tech } from "./technique";
 
-export type SkillAcquisition = {
+export type ExerciseByTime = {
   techniques: Array<Tech>;
 };
 
-const SkillAcquisition = (prop: {
+const ExerciseByTime = (prop: {
   info: string;
   setInfo: Dispatch<SetStateAction<string>>;
 }) => {
   const { info, setInfo } = prop;
-  const infoJson = JSON.parse(info) as SkillAcquisition;
-  const [techniques, setTechniques] = useState(infoJson.techniques);
+  const infoJson = JSON.parse(info) as ExerciseByTime;
+  const [techniques, setTechniques] = useState(infoJson.techniques || []);
 
   return (
     <div>
@@ -63,4 +58,4 @@ const SkillAcquisition = (prop: {
   );
 };
 
-export default SkillAcquisition;
+export default ExerciseByTime;

@@ -6,7 +6,7 @@ import { api } from "~/utils/api";
 import LoadingSpinner from "./loading-spinner";
 import OutdoorMileageComponent from "./outdoor-mileage";
 import { CONSTANTS } from "~/utils/helper";
-import SkillAcquisition from "./skill-acquisition";
+import ExerciseByTime from "./skill-acquisition";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -63,8 +63,8 @@ const InfoModal = (props: InfoModalProps) => {
             {event.name == CONSTANTS.OM && (
               <OutdoorMileageComponent info={event.info} setInfo={setInfo} />
             )}
-            {event.name == CONSTANTS.SK && (
-              <SkillAcquisition
+            {(event.name == CONSTANTS.SK || event.name == CONSTANTS.OAE) && (
+              <ExerciseByTime
                 info={event.info}
                 setInfo={setInfo}
                 key="skill-acquisition"
