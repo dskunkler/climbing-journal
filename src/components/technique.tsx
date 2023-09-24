@@ -1,10 +1,4 @@
-import React, {
-  type Dispatch,
-  type SetStateAction,
-  useEffect,
-  useState,
-  useRef,
-} from "react";
+import React, { useState } from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 export type Technique = {
@@ -23,10 +17,6 @@ const Technique = (props: TechniqueProps) => {
   const [nameState, setNameState] = useState(name);
   const [timeState, setTimeState] = useState(time);
   const [noteState, setNoteState] = useState(note);
-
-  // useEffect(() => {
-  //   console.log("info changed....");
-  // }, [nameState, timeState, noteState]);
 
   return (
     <div>
