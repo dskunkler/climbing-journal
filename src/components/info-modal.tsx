@@ -6,7 +6,7 @@ import { api } from "~/utils/api";
 import LoadingSpinner from "./loading-spinner";
 import OutdoorMileageComponent from "./outdoor-mileage";
 import { CONSTANTS } from "~/utils/helper";
-import ExerciseByTime from "./skill-acquisition";
+import ExerciseByTime from "./exercise-by-time";
 
 type InfoModalProps = {
   event: CycleEvent;
