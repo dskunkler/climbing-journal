@@ -45,6 +45,7 @@ export type YosemiteGrade =
   | "5.14d";
 
 export const YosemiteGrades = [
+  "na",
   "5.5",
   "5.6",
   "5.7",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type Dispatch, type SetStateAction } from "react";
 import { type CycleEvent } from "./macro-cycle";
 import { Box, Modal, Typography } from "@mui/material";
 import { modalStyle } from "./event-modal";
@@ -7,11 +7,17 @@ import LoadingSpinner from "./loading-spinner";
 import OutdoorMileageComponent from "./outdoor-mileage";
 import { CONSTANTS } from "~/utils/helper";
 import ExerciseByTime from "./exercise-by-time";
+import IntervalComponent from "./interval-component";
 
 type InfoModalProps = {
   event: CycleEvent;
   open: boolean;
   handleClose: () => void;
+};
+
+export type InfoModalChildrenProps = {
+  info: string;
+  setInfo: Dispatch<SetStateAction<string>>;
 };
 
 const InfoModal = (props: InfoModalProps) => {
@@ -60,15 +66,18 @@ const InfoModal = (props: InfoModalProps) => {
           </div>
           <div id="info-modal-description">
             {/*  Switch on the things here */}
-            {event.name == CONSTANTS.OM && (
+            {event.name === CONSTANTS.OM && (
               <OutdoorMileageComponent info={event.info} setInfo={setInfo} />
             )}
-            {(event.name == CONSTANTS.SK || event.name == CONSTANTS.OAE) && (
+            {(event.name === CONSTANTS.SK || event.name == CONSTANTS.OAE) && (
               <ExerciseByTime
                 info={event.info}
                 setInfo={setInfo}
                 key="skill-acquisition"
               />
+            )}
+            {event.name === CONSTANTS.INT && (
+              <IntervalComponent info={event.info} setInfo={setInfo} />
             )}
             {/* <textarea
               name="eventInfo"

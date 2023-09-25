@@ -1,20 +1,13 @@
-import React, {
-  type Dispatch,
-  type SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import PitchComponent from "./pitch";
+import { type InfoModalChildrenProps } from "./info-modal";
 
 export type OutdoorMileage<G> = {
   goal: string;
   pitches: Array<G>;
 };
 
-const OutdoorMileageComponent = (prop: {
-  info: string;
-  setInfo: Dispatch<SetStateAction<string>>;
-}) => {
+const OutdoorMileageComponent = (prop: InfoModalChildrenProps) => {
   const { info, setInfo } = prop;
   const infoJson = JSON.parse(info) as OutdoorMileage<string>;
   const [goal, setGoal] = useState(infoJson.goal);

@@ -1,15 +1,13 @@
 import React, { type Dispatch, type SetStateAction, useState } from "react";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Technique, { type Technique as Tech } from "./technique";
+import { InfoModalChildrenProps } from "./info-modal";
 
 export type ExerciseByTime = {
   techniques: Array<Tech>;
 };
 
-const ExerciseByTime = (prop: {
-  info: string;
-  setInfo: Dispatch<SetStateAction<string>>;
-}) => {
+const ExerciseByTime = (prop: InfoModalChildrenProps) => {
   const { info, setInfo } = prop;
   const infoJson = JSON.parse(info) as ExerciseByTime;
   const [techniques, setTechniques] = useState(infoJson.techniques || []);
