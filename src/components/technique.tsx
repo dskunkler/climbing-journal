@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import Time from "./time";
 
 export type Technique = {
   name: string;
@@ -39,25 +40,18 @@ const Technique = (props: TechniqueProps) => {
         />
         <DeleteOutlinedIcon onClick={() => deleteTechnique()} />
       </span>
-      <div className="flex items-center">
-        Time:
-        <input
-          name="skill-time"
-          value={timeState}
-          type="number"
-          min={1}
-          max={120}
-          className="m-3 resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
-          onChange={(e) => {
-            setTimeState(+e.target.value);
-            setTech({
-              name: nameState,
-              time: +e.target.value,
-              note: noteState,
-            });
-          }}
-        />
-      </div>
+      <Time
+        time={timeState}
+        showSeconds={false}
+        handleChange={(seconds: number) => {
+          setTimeState(seconds);
+          setTech({
+            name: nameState,
+            time: seconds,
+            note: noteState,
+          });
+        }}
+      />
       <div className="flex items-center">
         Note:
         <textarea
