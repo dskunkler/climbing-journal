@@ -33,7 +33,7 @@ const Time = (props: TimeProps) => {
             value={seconds}
             type="number"
             min={0}
-            max={60}
+            max={59}
             className="m-3 resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
             onChange={(e) => {
               setSeconds(+e.target.value);

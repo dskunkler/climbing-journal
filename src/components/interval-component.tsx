@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { InfoModalChildrenProps } from "./info-modal";
 import Grades from "./grade-component";
 import Time from "./time";
+import Set from "./set";
+import Note from "./note";
 
 type Interval = {
   difficulty: string;
@@ -23,12 +25,26 @@ const IntervalComponent = (props: InfoModalChildrenProps) => {
     <>
       <Grades
         grade={difficulty}
-        setSelectedGrade={(grade) => {
-          setSelectedGrade(grade);
+        setSelectedGrade={(difficulty) => {
+          setSelectedGrade(difficulty);
           setInfo(
             JSON.stringify({
-              difficulty: grade,
+              difficulty,
               sets: setsState,
+              pace: paceState,
+              note: noteState,
+            })
+          );
+        }}
+      />
+      <Set
+        sets={setsState}
+        handleChange={(sets) => {
+          setSetsState(sets);
+          setInfo(
+            JSON.stringify({
+              difficulty: selectedGrade,
+              sets,
               pace: paceState,
               note: noteState,
             })
@@ -39,19 +55,33 @@ const IntervalComponent = (props: InfoModalChildrenProps) => {
         <div className="mr-2 font-bold">Pace: </div>
         <Time
           time={pace}
-          handleChange={(seconds) => {
-            setPaceState(seconds);
+          handleChange={(pace) => {
+            setPaceState(pace);
             setInfo(
               JSON.stringify({
                 difficulty: selectedGrade,
                 sets: setsState,
-                pace: seconds,
+                pace,
                 note: noteState,
               })
             );
           }}
         />
       </div>
+      <Note
+        note={noteState}
+        handleChange={(note) => {
+          setNoteState(note);
+          setInfo(
+            JSON.stringify({
+              difficulty: selectedGrade,
+              sets: setsState,
+              pace: paceState,
+              note,
+            })
+          );
+        }}
+      />
     </>
   );
 };
