@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { InfoModalChildrenProps } from "./info-modal";
 import Grades from "./grade-component";
+import Time from "./time";
 
 type Interval = {
   difficulty: string;
   sets: number;
-  pace: string;
+  pace: number;
   note: string;
 };
 
 const IntervalComponent = (props: InfoModalChildrenProps) => {
-  console.log("IntervalComponent loaded");
   const { info, setInfo } = props;
   const { difficulty, sets, pace, note } = JSON.parse(info) as Interval;
 
@@ -21,7 +21,6 @@ const IntervalComponent = (props: InfoModalChildrenProps) => {
 
   return (
     <>
-      <div className="text-white-500">Interval</div>
       <Grades
         grade={difficulty}
         setSelectedGrade={(grade) => {
@@ -29,13 +28,30 @@ const IntervalComponent = (props: InfoModalChildrenProps) => {
           setInfo(
             JSON.stringify({
               difficulty: grade,
-              setsState,
-              paceState,
-              noteState,
+              sets: setsState,
+              pace: paceState,
+              note: noteState,
             })
           );
         }}
       />
+      <div className="flex items-center">
+        <div className="mr-2 font-bold">Pace: </div>
+        <Time
+          time={pace}
+          handleChange={(seconds) => {
+            setPaceState(seconds);
+            setInfo(
+              JSON.stringify({
+                difficulty: selectedGrade,
+                sets: setsState,
+                pace: seconds,
+                note: noteState,
+              })
+            );
+          }}
+        />
+      </div>
     </>
   );
 };

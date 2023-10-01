@@ -332,7 +332,7 @@ export const SCHEDULES = {
       {
         date: 64,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:4"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:4"}',
       },
       {
         date: 67,
@@ -342,7 +342,7 @@ export const SCHEDULES = {
       {
         date: 67,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:3"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:3"}',
       },
       {
         date: 70,
@@ -362,7 +362,7 @@ export const SCHEDULES = {
       {
         date: 74,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:2"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:2"}',
       },
       { date: 77, name: "Redpoint", info: '{"climbs":[],"goal":""}' },
       {
@@ -384,7 +384,7 @@ export const SCHEDULES = {
       {
         date: 81,
         name: "Intervals",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 4:4"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 4:4"}',
       },
       {
         date: 84,
@@ -414,7 +414,7 @@ export const SCHEDULES = {
       {
         date: 88,
         name: "Intervals",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 4:4"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 4:4"}',
       },
       {
         date: 91,

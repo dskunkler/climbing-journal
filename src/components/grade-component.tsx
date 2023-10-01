@@ -10,7 +10,7 @@ const Grades = (props: GradeProps) => {
   const selectedGrade = grade || YosemiteGrades[0];
 
   return (
-    <div className="grade-component">
+    <div className="grade-component font-bold">
       <label htmlFor="grade-select">Select your grade: </label>
       <select
         name="grade-select"
