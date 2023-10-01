@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import Time from "./time";
+import Note from "./note";
 
 export type Technique = {
   name: string;
@@ -39,43 +41,29 @@ const Technique = (props: TechniqueProps) => {
         />
         <DeleteOutlinedIcon onClick={() => deleteTechnique()} />
       </span>
-      <div className="flex items-center">
-        Time:
-        <input
-          name="skill-time"
-          value={timeState}
-          type="number"
-          min={1}
-          max={120}
-          className="m-3 resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
-          onChange={(e) => {
-            setTimeState(+e.target.value);
-            setTech({
-              name: nameState,
-              time: +e.target.value,
-              note: noteState,
-            });
-          }}
-        />
-      </div>
-      <div className="flex items-center">
-        Note:
-        <textarea
-          name="skill-note"
-          value={noteState}
-          rows={1}
-          cols={noteState.length}
-          className="m-3 resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
-          onChange={(e) => {
-            setNoteState(e.target.value);
-            setTech({
-              name: nameState,
-              time: timeState,
-              note: e.target.value,
-            });
-          }}
-        />
-      </div>
+      <Time
+        time={timeState}
+        showSeconds={false}
+        handleChange={(seconds: number) => {
+          setTimeState(seconds);
+          setTech({
+            name: nameState,
+            time: seconds,
+            note: noteState,
+          });
+        }}
+      />
+      <Note
+        note={noteState}
+        handleChange={(n) => {
+          setNoteState(n);
+          setTech({
+            name: nameState,
+            time: timeState,
+            note: n,
+          });
+        }}
+      />
     </div>
   );
 };

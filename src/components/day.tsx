@@ -16,16 +16,13 @@ export const Day = (props: DayProps) => {
 
   const dayNum = newDate.getDate();
   return (
-    <div
-      className="h-full cursor-pointer"
-      onClick={handleOpen}
-    >
+    <div className="h-full cursor-pointer" onClick={handleOpen}>
       <div className="flex justify-end pr-1">
         {dayNum == 1 ? `${newDate.getUTCMonth() + 1}/${dayNum}` : `${dayNum}`}
       </div>
       <div className="min-h-fit shrink-0">
-        {events.map((event) => (
-          <div className="pl-0.5" key={event.name}>
+        {events.map((event, index) => (
+          <div className="pl-0.5" key={`${event.name}-${index}`}>
             {EXERCISES[event.name]}
           </div>
         ))}

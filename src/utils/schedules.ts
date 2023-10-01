@@ -9,7 +9,7 @@ export const SCHEDULES = {
       {
         date: 0,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 1,
@@ -19,27 +19,27 @@ export const SCHEDULES = {
       {
         date: 1,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 3,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":2,"duration":20,"note":""}',
+        info: '{"grade":"na","sets":2,"duration":1200,"note":""}',
       },
       {
         date: 3,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 5,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":2,"duration":25,"note":""}',
+        info: '{"grade":"na","sets":2,"duration":1500,"note":""}',
       },
       {
         date: 5,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 7,
@@ -49,7 +49,7 @@ export const SCHEDULES = {
       {
         date: 7,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 8,
@@ -59,27 +59,27 @@ export const SCHEDULES = {
       {
         date: 8,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 10,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":2,"duration":30,"note":""}',
+        info: '{"grade":"na","sets":2,"duration":1800,"note":""}',
       },
       {
         date: 10,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 12,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":2,"duration":30,"note":""}',
+        info: '{"grade":"na","sets":2,"duration":1800,"note":""}',
       },
       {
         date: 12,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 14,
@@ -89,7 +89,7 @@ export const SCHEDULES = {
       {
         date: 14,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 15,
@@ -99,37 +99,37 @@ export const SCHEDULES = {
       {
         date: 15,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 17,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":3,"duration":25,"note":""}',
+        info: '{"grade":"na","sets":3,"duration":1500,"note":""}',
       },
       {
         date: 17,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 18,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":3,"duration":25,"note":""}',
+        info: '{"grade":"na","sets":3,"duration":1500,"note":""}',
       },
       {
         date: 18,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 19,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":2,"duration":25,"note":""}',
+        info: '{"grade":"na","sets":2,"duration":1500,"note":""}',
       },
       {
         date: 19,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 21,
@@ -139,7 +139,7 @@ export const SCHEDULES = {
       {
         date: 21,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 22,
@@ -149,37 +149,37 @@ export const SCHEDULES = {
       {
         date: 22,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 24,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":3,"duration":30,"note":""}',
+        info: '{"grade":"na","sets":3,"duration":1800,"note":""}',
       },
       {
         date: 24,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 25,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":3,"duration":30,"note":""}',
+        info: '{"grade":"na","sets":3,"duration":1800,"note":""}',
       },
       {
         date: 25,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 26,
         name: "Aerobic, Respiration, and Capillarity training",
-        info: '{"grade":"na","sets":2,"duration":30,"note":""}',
+        info: '{"grade":"na","sets":2,"duration":1800,"note":""}',
       },
       {
         date: 26,
         name: "Skill Acquisition",
-        info: '{"techniques":[{"name":"Quiet Feet","time":15,"note":""},{"name":"Hover Hands","time":15,"note":""}]}',
+        info: '{"techniques":[{"name":"Quiet Feet","time":900,"note":""},{"name":"Hover Hands","time":900,"note":""}]}',
       },
       {
         date: 28,
@@ -254,12 +254,12 @@ export const SCHEDULES = {
       {
         date: 49,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":60,"climbs":[]}',
+        info: '{"time":3600,"climbs":[]}',
       },
       {
         date: 49,
         name: "Campus",
-        info: '{"time":15,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
+        info: '{"time":900,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
       {
         date: 49,
@@ -269,7 +269,7 @@ export const SCHEDULES = {
       {
         date: 52,
         name: "Limit Bouldering",
-        info: '{"duration":90,"moves":[]}',
+        info: '{"duration":5400,"moves":[]}',
         notes: "",
       },
       {
@@ -280,12 +280,12 @@ export const SCHEDULES = {
       {
         date: 54,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":60,"climbs":[]}',
+        info: '{"time":3600,"climbs":[]}',
       },
       {
         date: 54,
         name: "Campus",
-        info: '{"time":20,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
+        info: '{"time":1200,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
       {
         date: 54,
@@ -295,18 +295,18 @@ export const SCHEDULES = {
       {
         date: 57,
         name: "Limit Bouldering",
-        info: '{"duration":90,"moves":[]}',
+        info: '{"duration":5400,"moves":[]}',
         notes: "Outdoor",
       },
       {
         date: 59,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":60,"climbs":[]}',
+        info: '{"time":3600,"climbs":[]}',
       },
       {
         date: 59,
         name: "Campus",
-        info: '{"time":25,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
+        info: '{"time":1500,"exercise":[{"name":"Matching Ladders","sets":4,"distance":1,"notes":""},{"name":"Basic Ladders","sets":4,"distance":1,"notes":""},{"name":"Max Ladders","sets":4,"distance":2,"notes":""}]}',
       },
       {
         date: 59,
@@ -316,7 +316,7 @@ export const SCHEDULES = {
       {
         date: 62,
         name: "Limit Bouldering",
-        info: '{"duration":90,"moves":[]}',
+        info: '{"duration":5400,"moves":[]}',
         notes: "",
       },
       {
@@ -327,22 +327,22 @@ export const SCHEDULES = {
       {
         date: 64,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":60,"climbs":[]}',
+        info: '{"time":3600,"climbs":[]}',
       },
       {
         date: 64,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:4"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:4"}',
       },
       {
         date: 67,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":50,"climbs":[]}',
+        info: '{"time":3000,"climbs":[]}',
       },
       {
         date: 67,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:3"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:3"}',
       },
       {
         date: 70,
@@ -357,12 +357,12 @@ export const SCHEDULES = {
       {
         date: 74,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":50,"climbs":[]}',
+        info: '{"time":3000,"climbs":[]}',
       },
       {
         date: 74,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 2:2"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:2"}',
       },
       { date: 77, name: "Redpoint", info: '{"climbs":[],"goal":""}' },
       {
@@ -379,12 +379,12 @@ export const SCHEDULES = {
       {
         date: 81,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":40,"climbs":[]}',
+        info: '{"time":2400,"climbs":[]}',
       },
       {
         date: 81,
         name: "Intervals",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 4:4"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 4:4"}',
       },
       {
         date: 84,
@@ -409,12 +409,12 @@ export const SCHEDULES = {
       {
         date: 88,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":40,"climbs":[]}',
+        info: '{"time":2400,"climbs":[]}',
       },
       {
         date: 88,
         name: "Intervals",
-        info: '{"difficulty":"na","sets":2,"pace":"slow","note":"DC 4:4"}',
+        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 4:4"}',
       },
       {
         date: 91,
@@ -463,7 +463,7 @@ export const SCHEDULES = {
       {
         date: 102,
         name: "Warm-up Boulder Ladder",
-        info: '{"time":45,"climbs":[]}',
+        info: '{"time":2700,"climbs":[]}',
       },
       {
         date: 105,
