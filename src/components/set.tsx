@@ -1,15 +1,16 @@
 import React from "react";
 
 type SetProps = {
+  name?: string;
   sets: number;
   handleChange: (sets: number) => void;
 };
 
 const Set = (props: SetProps) => {
-  const { sets, handleChange } = props;
+  const { sets, handleChange, name = "Sets" } = props;
   return (
     <>
-      Set:
+      {name}
       <input
         name="sets"
         value={sets}

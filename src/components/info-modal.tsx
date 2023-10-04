@@ -8,6 +8,7 @@ import OutdoorMileageComponent from "./outdoor-mileage";
 import { CONSTANTS } from "~/utils/helper";
 import ExerciseByTime from "./exercise-by-time";
 import IntervalComponent from "./interval-component";
+import SupplementaryExercise from "./supplementary-exercise";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -78,6 +79,9 @@ const InfoModal = (props: InfoModalProps) => {
             )}
             {event.name === CONSTANTS.INT && (
               <IntervalComponent info={event.info} setInfo={setInfo} />
+            )}
+            {event.name === CONSTANTS.SE && (
+              <SupplementaryExercise info={event.info} setInfo={setInfo} />
             )}
             {/* <textarea
               name="eventInfo"
