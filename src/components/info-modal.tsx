@@ -9,6 +9,7 @@ import { CONSTANTS } from "~/utils/helper";
 import ExerciseByTime from "./exercise-by-time";
 import IntervalComponent from "./interval-component";
 import SupplementaryExercise from "./supplementary-exercise";
+import LimitBouldering from "./limit-bouldering";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -82,6 +83,9 @@ const InfoModal = (props: InfoModalProps) => {
             )}
             {event.name === CONSTANTS.SE && (
               <SupplementaryExercise info={event.info} setInfo={setInfo} />
+            )}
+            {event.name === CONSTANTS.LB && (
+              <LimitBouldering info={event.info} setInfo={setInfo} />
             )}
             {/* <textarea
               name="eventInfo"

@@ -55,6 +55,7 @@ const Technique = (props: TechniqueProps) => {
       />
       <Note
         note={noteState}
+        title="Note:"
         handleChange={(n) => {
           setNoteState(n);
           setTech({
