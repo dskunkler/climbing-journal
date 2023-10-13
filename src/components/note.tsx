@@ -2,14 +2,15 @@ import React from "react";
 
 type NoteProps = {
   note: string;
+  title?: string;
   handleChange: (note: string) => void;
 };
 
 const Note = (props: NoteProps) => {
-  const { note = "", handleChange } = props;
+  const { note = "", handleChange, title } = props;
   return (
     <div className="flex w-fit items-center">
-      Note:
+      {title}
       <textarea
         name="skill-note"
         value={note}

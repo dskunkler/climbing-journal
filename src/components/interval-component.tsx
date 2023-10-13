@@ -70,6 +70,7 @@ const IntervalComponent = (props: InfoModalChildrenProps) => {
       </div>
       <Note
         note={noteState}
+        title="Note:"
         handleChange={(note) => {
           setNoteState(note);
           setInfo(
