@@ -10,6 +10,7 @@ import ExerciseByTime from "./exercise-by-time";
 import IntervalComponent from "./interval-component";
 import SupplementaryExercise from "./supplementary-exercise";
 import LimitBouldering from "./limit-bouldering";
+import ARC from "./arc-component";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -86,6 +87,9 @@ const InfoModal = (props: InfoModalProps) => {
             )}
             {event.name === CONSTANTS.LB && (
               <LimitBouldering info={event.info} setInfo={setInfo} />
+            )}
+            {event.name === CONSTANTS.ARC && (
+              <ARC info={event.info} setInfo={setInfo} />
             )}
             {/* <textarea
               name="eventInfo"
