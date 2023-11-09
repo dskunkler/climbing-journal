@@ -11,6 +11,7 @@ import IntervalComponent from "./interval-component";
 import SupplementaryExercise from "./supplementary-exercise";
 import LimitBouldering from "./limit-bouldering";
 import ARC from "./arc-component";
+import WarmUpBoulderLadder from "./wbl-component";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -90,6 +91,9 @@ const InfoModal = (props: InfoModalProps) => {
             )}
             {event.name === CONSTANTS.ARC && (
               <ARC info={event.info} setInfo={setInfo} />
+            )}
+            {event.name === CONSTANTS.WBL && (
+              <WarmUpBoulderLadder info={event.info} setInfo={setInfo} />
             )}
             {/* <textarea
               name="eventInfo"
