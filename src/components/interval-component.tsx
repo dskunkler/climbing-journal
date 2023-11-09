@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InfoModalChildrenProps } from "./info-modal";
+import { type InfoModalChildrenProps } from "./info-modal";
 import Grades from "./grade-component";
 import Time from "./time";
 import Set from "./set";
