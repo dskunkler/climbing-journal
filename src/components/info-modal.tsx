@@ -12,6 +12,7 @@ import SupplementaryExercise from "./supplementary-exercise";
 import LimitBouldering from "./limit-bouldering";
 import ARC from "./arc-component";
 import WarmUpBoulderLadder from "./wbl-component";
+import LinkedBoulderingCircuit from "./linked-bouldering-circuit";
 
 type InfoModalProps = {
   event: CycleEvent;
@@ -95,6 +96,9 @@ const InfoModal = (props: InfoModalProps) => {
             {event.name === CONSTANTS.WBL && (
               <WarmUpBoulderLadder info={event.info} setInfo={setInfo} />
             )}
+            {event.name === CONSTANTS.LBC && (
+              <LinkedBoulderingCircuit info={event.info} setInfo={setInfo} />
+            )}
             {/* <textarea
               name="eventInfo"
               placeholder={"Event Info"}
@@ -104,22 +108,23 @@ const InfoModal = (props: InfoModalProps) => {
               className="resize rounded-md bg-slate-800 text-red-500 outline-dashed outline-stone-900"
               onChange={(e) => setInfo(e.target.value)}
             /> */}
-
-            <button
-              type="submit"
-              className="hover:text-amber-500"
-              onClick={() => {
-                if (!event.id) {
-                  throw new Error("Missing Event id in mutation");
-                } else {
-                  console.log("mutating with", info);
-                  mutate({ event, newInfo: info });
-                  handleClose();
-                }
-              }}
-            >
-              Save
-            </button>
+            <div>
+              <button
+                type="submit"
+                className="hover:text-amber-500"
+                onClick={() => {
+                  if (!event.id) {
+                    throw new Error("Missing Event id in mutation");
+                  } else {
+                    console.log("mutating with", info);
+                    mutate({ event, newInfo: info });
+                    handleClose();
+                  }
+                }}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </Box>
       </Modal>
