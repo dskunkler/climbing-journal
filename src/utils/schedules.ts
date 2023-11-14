@@ -332,7 +332,7 @@ export const SCHEDULES = {
       {
         date: 64,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:4"}',
+        info: '{"climbs":[],"sets":2,"pace":0,"note":"DC 2:4"}',
       },
       {
         date: 67,
@@ -342,7 +342,7 @@ export const SCHEDULES = {
       {
         date: 67,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:3"}',
+        info: '{"climbs":[],"sets":2,"pace":0,"note":"DC 2:3"}',
       },
       {
         date: 70,
@@ -362,7 +362,7 @@ export const SCHEDULES = {
       {
         date: 74,
         name: "Linked Bouldering Circuit",
-        info: '{"difficulty":"na","sets":2,"pace":0,"note":"DC 2:2"}',
+        info: '{"climbs":[],"sets":2,"pace":0,"note":"DC 2:2"}',
       },
       { date: 77, name: "Redpoint", info: '{"climbs":[],"goal":""}' },
       {
