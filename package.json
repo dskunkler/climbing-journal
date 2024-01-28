@@ -10,7 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.17.1",
+    "@clerk/nextjs": "^4.29.3",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.15",
