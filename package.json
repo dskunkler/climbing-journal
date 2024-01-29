@@ -28,7 +28,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.8",
     "next": "13.5",
-    "next-auth": "^4.21.0",
+    "next-auth": "^4.24.5",
     "react": "18.2.0",
     "react-calendar": "^4.2.1",
     "react-dom": "18.2.0",
