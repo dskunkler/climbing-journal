@@ -1,12 +1,8 @@
-import { clerkClient } from "@clerk/nextjs/server";
-import { type User } from "@clerk/nextjs/dist/api";
 import { z } from "zod";
 import { type Context } from "../trpc";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { TRPCError } from "@trpc/server";
 import type MacroCycle from "~/components/macro-cycle";
-import { CycleEvent } from "~/components/macro-cycle";
 
 /**
  * Shared Procedures
