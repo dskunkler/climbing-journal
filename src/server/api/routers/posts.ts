@@ -1,19 +1,17 @@
-import { clerkClient } from "@clerk/nextjs/server";
-import { type User } from "@clerk/nextjs/dist/api";
 import { z } from "zod";
-
 import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
+import { type User, clerkClient } from "@clerk/nextjs/server";
 
 // Filter subset of user data
 const filterUserForClient = (user: User) => {
   return {
     username: user.username,
-    profileImageUrl: user.profileImageUrl,
+    imageUrl: user.imageUrl,
     id: user.id,
   };
 };
